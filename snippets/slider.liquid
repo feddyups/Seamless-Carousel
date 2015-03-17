@@ -1,26 +1,26 @@
-{% unless settings.slide_number == '0' %}
-{% capture slides %}{{ settings.slide_number }}{% endcapture %}
+{% assign slides = settings.slide_order | split:',' %}
+{% assign loop = slides.size | minus: 1 %}
+{% unless loop == '0' %}
 <div id="slider">
   <div id="home">
     <div id="home_feature" {% if settings.showtextbox %}class="hidetextboxformobile"{% endif %} data-normalwidth="{{ settings.normalwidth }}" data-normalheight="{{ settings.normalheight }}" data-mobilewidth="{{ settings.mobilewidth }}" data-mobileheight="{{ settings.normalwidth }}"></div>
     <div id="home_feature_images" data-showpagination="{{ settings[showpagination] }}">
-    {% assign x = 1 %}
-    {% for i in (1..slides) %}
-      {% capture slide %}slide{{ i }}.jpg{% endcapture %}
-      {% capture slidesmall %}slide{{ i }}_sm.jpg{% endcapture %}     
-      {% capture usesm %}slide{{ i }}_sm_use{% endcapture %}     
-      {% capture link %}slide{{ i }}_link{% endcapture %}
-      {% capture alt %}slide{{ i }}_alt{% endcapture %}
-      {% capture bgcolor %}slide{{ i }}_bgcolor{% endcapture %}
-      {% capture repetition %}slide{{ i }}_repeat{% endcapture %}
+    {% for i in (0..loop) %}
+      {% capture slide %}slide{{ slides[i] }}.jpg{% endcapture %}
+      {% capture slidesmall %}slide{{ slides[i] }}_sm.jpg{% endcapture %}     
+      {% capture usesm %}slide{{ slides[i] }}_sm_use{% endcapture %}     
+      {% capture link %}slide{{ slides[i] }}_link{% endcapture %}
+      {% capture alt %}slide{{ slides[i] }}_alt{% endcapture %}
+      {% capture bgcolor %}slide{{ slides[i] }}_bgcolor{% endcapture %}
+      {% capture repetition %}slide{{ slides[i] }}_repeat{% endcapture %}
       
-      {% capture headline %}slide{{ i }}_headline{% endcapture %}
-      {% capture lead %}slide{{ i }}_lead{% endcapture %}
-      {% capture prompt %}slide{{ i }}_prompt{% endcapture %}
-      {% capture alignment %}slide{{ i }}_box_alignment{% endcapture %}
-      {% capture showformobile %}slide{{ i }}_showtextbox{% endcapture %}
-      {% capture showfordesktop %}slide{{ i }}_showtextbox_full{% endcapture %}
-      {% capture style %}slide{{ i }}_box_style{% endcapture %}
+      {% capture headline %}slide{{ slides[i] }}_headline{% endcapture %}
+      {% capture lead %}slide{{ slides[i] }}_lead{% endcapture %}
+      {% capture prompt %}slide{{ slides[i] }}_prompt{% endcapture %}
+      {% capture alignment %}slide{{ slides[i] }}_box_alignment{% endcapture %}
+      {% capture showformobile %}slide{{ slides[i] }}_showtextbox{% endcapture %}
+      {% capture showfordesktop %}slide{{ slides[i] }}_showtextbox_full{% endcapture %}
+      {% capture style %}slide{{ slides[i] }}_box_style{% endcapture %}
 
       <a data-style="{{ settings[style] }}" data-alignment="{{ settings[alignment] }}" data-showfordesktop="{{ settings[showfordesktop] }}" data-showformobile="{{ settings[showformobile] }}" data-headline="{{ settings[headline] }}" data-lead="{{ settings[lead] }}" data-prompt="{{ settings[prompt] }}" data-repeat="{{ settings[repetition] }}" data-bgcolor="{{ settings[bgcolor] }}" data-smallscreen="{% if settings[usesm] %}{{ slidesmall | asset_url }}{% else %}false{% endif %}" href="{{ settings[link] }}"><img src="{{ slide | asset_url }}" alt="{{ settings[alt] }}" /></a>
     {% endfor %}

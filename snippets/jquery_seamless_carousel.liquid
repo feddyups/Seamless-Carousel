@@ -87,17 +87,6 @@ function debounce(func, wait, immediate) {
       // show
       $(self).show();
       // resize
-      
-
-      /*
-        $(window).resize(function () {
-          resize();
-        });
-      */
-
-
-     
-
       window.addEventListener('resize', resize);
 
       if ("onorientationchange" in window) {
@@ -229,9 +218,6 @@ function debounce(func, wait, immediate) {
     }
     // Resize
     var resize = debounce(function() {
-
-      console.log('resizin');
-        
       var win_width = $(window).width();
       var win_height = $(window).height();
       var img_width, img_height, img_ratio, img_unit;

@@ -1,25 +1,23 @@
 <fieldset>
   <legend>Homepage Slideshow</legend>
-  <h3 class="heading">General Options <span class="note">The following will affect visual aspects of the slideshow, e.g. pagination and general background color. </span></h3>
+  <h3 class="heading">General Options </h3><p class="note">The following will affect visual aspects of the slideshow, e.g. pagination and general background color. </p>
   <table>
+    <tr>
+      <td colspan="2">
+        <p class="note">Slider may take up to two versions of each image - one for desktop and one for mobile view</p>
+        <p class="note">Leave the text fields empty if you want just an image slide (without content)</p>
+      </td>
+    </tr>
     <tr>
       <th><label for="viewport_bg">Viewport Background</label></th>
       <td><input type="text" id="viewport_bg" name="viewport_bg" class="color" value="#f6f5f3"/></td>
     </tr>
     <tr>
-      <th><label for="slide_number">Slides to Show</label></th>
-      <td><select name="slide_number" id="slide_number">
-          <option value="1" selected="selected">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select></td>
+      <th><label for="slide_order">Slide Order</label></th>
+      <td>
+        <input type="text" id="slide_order" name="slide_order" class="text" value="3,1,2" />
+        <p class="note">e.g. 3,1,2 ; Slideshow can show up to ten images</p>
+      </td>
     </tr>
     <tr>
       <th><label for="pagination">Show Pagination</label></th>
@@ -37,8 +35,6 @@
         <th><label for="mobilewidth">Mobile View : Width x Height </label></th>
         <td><input type="number" id="mobilewidth" name="mobilewidth" class="number" value="861"/> x <input type="number" id="mobileheight" name="mobileheight" class="number" value="329"/> px</td>
     </tr>
-
-
   </table>
   <h3 class="heading">Options for the 1<sup>st</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
   <div class="collapsed">
