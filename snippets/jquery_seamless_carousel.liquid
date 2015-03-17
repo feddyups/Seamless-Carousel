@@ -1,12 +1,29 @@
+ <script type="text/javascript">
 /*
-SUBJECT:    A nice little carousel, like when we we were kids v1.2
+SUBJECT:    A nice little carousel, like when we we were kids v1.4
 RELEASED:   06.12.2013
-UPDATED:    10.12.2013
+UPDATED:    17.03.2015
 AUTHOR:     feddyups at Webatect Networks, on behalf of Tricky3 Web Mangling
 EMAIL:      feddyups@gmail.com, rick@tricky3.co.uk
 WEBSITE:    http://www.freelancer.com/u/feddyups.html
 SUPPORT:    http://tricky3.co.uk/
 */
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
+
 (function ($) {
   $.fn.carousel = function ($settings) {
     return this.each(function () {
@@ -70,9 +87,19 @@ SUPPORT:    http://tricky3.co.uk/
       // show
       $(self).show();
       // resize
-      $(window).resize(function () {
-        resize();
-      });
+      
+
+      /*
+        $(window).resize(function () {
+          resize();
+        });
+      */
+
+
+     
+
+      window.addEventListener('resize', resize);
+
       if ("onorientationchange" in window) {
         if (!window.addEventListener) {
           window.attachEvent("orientationchange", function () {
@@ -201,7 +228,10 @@ SUPPORT:    http://tricky3.co.uk/
       return false;
     }
     // Resize
-    function resize() {
+    var resize = debounce(function() {
+
+      console.log('resizin');
+        
       var win_width = $(window).width();
       var win_height = $(window).height();
       var img_width, img_height, img_ratio, img_unit;
@@ -285,7 +315,12 @@ SUPPORT:    http://tricky3.co.uk/
          
         break;
       }
-    }
+    
+    
+    }, 250);
+
+
+    
 
     // Progress Bar
     function preloaderStart() {
@@ -321,3 +356,103 @@ SUPPORT:    http://tricky3.co.uk/
   });
 };
 })(jQuery);
+   
+   
+   // Get Set, let's go 
+    $(document).ready(function () {
+      if ($('#home_feature_images a').length > 0) {
+        var paginatedata = $('#home_feature_images').data("showpagination");
+          //console.log ('paginate data : '+paginatedata)
+          // Adjust Markup
+          var home_slides = '';
+          var showPagination = paginatedata; //true or false; /* Truth is a Relative Concept :) */
+          if (showPagination) {
+            var home_pagination = '';
+            var home_mobile_pagination = '';
+          }
+             
+          $('#home_feature_images a').each(function (index) {
+              //set the text box vars
+              var headline = $(this).data("headline");
+              if (headline) {
+                var headline2 = '<div class="framed">'+$(this).data("headline")+'</div>';
+              } 
+              else {
+                var headline2 = '';
+              }
+                var lead = $(this).data("lead");
+                var prompt = $(this).data("prompt");
+                if (prompt) {
+                  var prompt2 = '<span class="leftspanned inthelink">&lt; </span>'+$(this).data("prompt")+'<span class="rightspanned inthelink"> &gt;</span>';
+                } 
+                else {
+                  var prompt2 = '';
+                }
+                var alignment = $(this).data("alignment");
+                var boxstyle = $(this).data("style");
+                var showtextbox = $(this).data("showformobile");
+                var showfordesktop = $(this).data("showfordesktop");
+                var src = $(this).find('img').attr("src");
+                //check for repeating
+                var repetition = $(this).data("repeat");
+                var smallscreen_deploy = $(this).data("smallscreen");
+                if (smallscreen_deploy) {
+                  var smallscreenclass='largealternative';
+                  var divsmallscreenclass='smallenablediv';
+                  var additionalimage = '';
+                  additionalimage +='<img class="mobilescreen" src="' + smallscreen_deploy + '" alt="' + $(this).find('img').attr("alt") + '" />';
+                } else {
+                  var smallscreenclass='smalldisabled';
+                  var divsmallscreenclass='smalldisablediv';
+                  var additionalimage = '';
+                }
+                if (showtextbox) {
+                  var showformobile='hideformobile';
+                } else {
+                  var showformobile='centerformobile';
+                }
+                if (showfordesktop) {
+                  var showfordsktp='hideoverlay';
+                } else {
+                  var showfordsktp='';
+                }
+              var bgcolor = $(this).attr("data-bgcolor");
+              if (src === undefined) {
+                  src = $(this).find('img').data("src");
+                }
+                // Conditional logic, distinguishing between index number and background color for each slide, repeat data is always reported
+                // CASE 1:  For First Index, and with a bg color Defined
+                if (bgcolor.length != 0) {
+                  home_slides += '<div><div><a class="'+divsmallscreenclass+'" data-bgcolor="' + bgcolor + '" data-smallscreen="'+ smallscreen_deploy +'" data-repeat="' + repetition + '" href="' + $(this).attr("href") + '"><div class="textoverlay '+alignment+' '+showfordsktp+' '+showformobile+' '+boxstyle+'"><div class="encircle"><div class="tightwidth">' + headline2 + '<div class="unframed">'+lead+'</div><div class="linkprompt">'+prompt2+'</div></div></div></div><img class="swapper '+smallscreenclass+'" src="' + src + '" alt="' + $(this).find('img').attr("alt") + '" />'+additionalimage+'</a></div></div>';
+                // console.log('index : 0 CASE 1- bgcolor defined : ' + bgcolor + '. Repetition Value : ' + repetition);
+                } 
+                else {
+                  //CASE 2:  For First Index, and with a bg color UNdefined
+                  home_slides += '<div><div><a class="'+divsmallscreenclass+'" data-smallscreen="'+ smallscreen_deploy +'" data-repeat="' + repetition + '" href="' + $(this).attr("href") + '"><div class="textoverlay '+alignment+' '+showfordsktp+' '+showformobile+' '+boxstyle+'"><div class="encircle"><div class="tightwidth">' + headline2 + '<div class="unframed">'+lead+'</div><div class="linkprompt">'+prompt2+'</div></div></div></div><img class="swapper '+smallscreenclass+'" src="' + src + '" alt="' + $(this).find('img').attr("alt") + '" />'+additionalimage+'</a></div></div>';
+                  //console.log('index : 0. CASE 2- bgcolor defined : NULL. Repetition Value : ' + repetition);
+                }
+                if (showPagination) {
+                  home_pagination += '<li><a>' + $(this).find('img').attr("alt") + '</a><span>/</span></li>';
+                  home_mobile_pagination += '<li><a>&bull;</a></li>';
+                }
+            });
+            $('#home_feature_images').remove();
+            $( "#home_feature" ).fadeTo( "fast" , 1, function() {
+              // Animation complete.
+              console.log('#home_feature is now visible');
+            });
+              
+            if (showPagination) {
+              $('#home_feature').prepend('<div id="home-carousel" class="carousel"><div class="slides">' + home_slides + '</div><div class="paginationwrap"><ul class="menu"><li class="prev"><a></a></li><li class="next"><a></a></li></ul><ul class="pagination">' + home_pagination + '</ul><ul class="mobile-pagination">' + home_mobile_pagination + '</ul></div></div>');
+            }
+            if (!showPagination) {
+              $('#home_feature').prepend('<div id="home-carousel" class="carousel"><div class="slides">' + home_slides + '</div></div>');
+            }
+            // Initiate carousel
+            $('#home-carousel').carousel({
+              layout: 'home'
+            });
+        }
+    });
+
+</script>
