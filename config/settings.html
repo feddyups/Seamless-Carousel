@@ -1,0 +1,806 @@
+<fieldset>
+  <legend>Homepage Slideshow</legend>
+  <h3 class="heading">General Options <span class="note">The following will affect visual aspects of the slideshow, e.g. pagination and general background color. </span></h3>
+  <table>
+    <tr>
+      <th><label for="viewport_bg">Viewport Background</label></th>
+      <td><input type="text" id="viewport_bg" name="viewport_bg" class="color" value="#f6f5f3"/></td>
+    </tr>
+    <tr>
+      <th><label for="slide_number">Slides to Show</label></th>
+      <td><select name="slide_number" id="slide_number">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select></td>
+    </tr>
+    <tr>
+      <th><label for="pagination">Show Pagination</label></th>
+      <td><input type="checkbox" id="pagination" name="pagination" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="showtextbox">Hide All the Text Boxes for the mobile View</label></th>
+      <td><input type="checkbox" id="showtextbox" name="showtextbox" value="1" /></td>
+    </tr>
+    <tr>
+        <th><label for="normalwidth">Desktop View : Width x Height </label></th>
+        <td><input type="number" id="normalwidth" name="normalwidth" class="number" value="1850"/> x <input type="number" id="normalheight" name="normalheight" class="number" value="706"/> px</td>
+    </tr>
+    <tr>
+        <th><label for="mobilewidth">Mobile View : Width x Height </label></th>
+        <td><input type="number" id="mobilewidth" name="mobilewidth" class="number" value="861"/> x <input type="number" id="mobileheight" name="mobileheight" class="number" value="329"/> px</td>
+    </tr>
+
+
+  </table>
+  <h3 class="heading">Options for the 1<sup>st</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide1">1<sup>st</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide1" name="slide1.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_sm">1<sup>st</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide1_sm" name="slide1_sm.jpg" /></td>
+        <td><label for="slide1_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide1_sm_use" name="slide1_sm_use" value="1" />
+        </td>
+      </tr>
+      <tr>
+        <th><label for="slide1_repeat">Repeat 1<sup>st</sup> Image</label></th>
+        <td><input type="checkbox" id="slide1_repeat" name="slide1_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_bgcolor">Background Color for 1<sup>st</sup> Image</label></th>
+        <td><input type="text" id="slide1_bgcolor" name="slide1_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_alt">Alt text:</label></th>
+        <td><input type="text" id="slide1_alt" name="slide1_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_link">Link to:</label></th>
+        <td><input type="text" id="slide1_link" name="slide1_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_showtextbox_full">Hide this Text Box </label></th>
+        <td><input type="checkbox" id="slide1_showtextbox_full" name="slide1_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide1_showtextbox" name="slide1_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_headline">Headline Text</label></th>
+        <td><input type="text" id="slide1_headline" name="slide1_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_lead">Lead Text</label></th>
+        <td><input type="text" id="slide1_lead" name="slide1_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide1_prompt" name="slide1_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide1_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide1_box_alignment" id="slide1_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide1_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide1_box_style" id="slide1_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>     
+    </table>
+  </div>
+  <h3 class="heading">Options for the 2<sup>nd</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide2">2<sup>nd</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide2" name="slide2.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_sm">2<sup>nd</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide2_sm" name="slide2_sm.jpg" /></td>
+        <td><label for="slide2_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide2_sm_use" name="slide2_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_repeat">Repeat 2<sup>nd</sup> Image</label></th>
+        <td><input type="checkbox" id="slide2_repeat" name="slide2_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_bgcolor">Background Color for 2<sup>nd</sup> Image</label></th>
+        <td><input type="text" id="slide2_bgcolor" name="slide2_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_alt">Alt text:</label></th>
+        <td><input type="text" id="slide2_alt" name="slide2_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_link">Link to:</label></th>
+        <td><input type="text" id="slide2_link" name="slide2_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_showtextbox_full">Hide this Text Box </label></th>
+        <td><input type="checkbox" id="slide2_showtextbox_full" name="slide2_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide2_showtextbox" name="slide2_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_headline">Headline Text</label></th>
+        <td><input type="text" id="slide2_headline" name="slide2_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_lead">Lead Text</label></th>
+        <td><input type="text" id="slide2_lead" name="slide2_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide2_prompt" name="slide2_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide2_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide2_box_alignment" id="slide2_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide2_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide2_box_style" id="slide2_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+  <h3 class="heading">Options for the 3<sup>rd</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide3">3<sup>rd</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide3" name="slide3.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_sm">3<sup>rd</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide3_sm" name="slide3_sm.jpg" /></td>
+        <td><label for="slide3_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide3_sm_use" name="slide3_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_repeat">Repeat 3<sup>rd</sup> Image</label></th>
+        <td><input type="checkbox" id="slide3_repeat" name="slide3_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_bgcolor">Background Color for 3<sup>rd</sup> Image</label></th>
+        <td><input type="text" id="slide3_bgcolor" name="slide3_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_alt">Alt text:</label></th>
+        <td><input type="text" id="slide3_alt" name="slide3_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_link">Link to:</label></th>
+        <td><input type="text" id="slide3_link" name="slide3_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide3_showtextbox_full" name="slide3_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide3_showtextbox" name="slide3_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_headline">Headline Text</label></th>
+        <td><input type="text" id="slide3_headline" name="slide3_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_lead">Lead Text</label></th>
+        <td><input type="text" id="slide3_lead" name="slide3_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide3_prompt" name="slide3_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide3_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide3_box_alignment" id="slide3_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide3_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide3_box_style" id="slide3_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>   
+    </table>
+  </div>
+
+  <h3 class="heading">Options for the 4<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide4">4<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide4" name="slide4.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_sm">4<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide4_sm" name="slide4_sm.jpg" /></td>
+        <td><label for="slide4_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide4_sm_use" name="slide4_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_repeat">Repeat 4<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide4_repeat" name="slide4_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_bgcolor">Background Color for 4<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide4_bgcolor" name="slide4_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_alt">Alt text:</label></th>
+        <td><input type="text" id="slide4_alt" name="slide4_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_link">Link to:</label></th>
+        <td><input type="text" id="slide4_link" name="slide4_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide4_showtextbox_full" name="slide4_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide4_showtextbox" name="slide4_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_headline">Headline Text</label></th>
+        <td><input type="text" id="slide4_headline" name="slide4_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_lead">Lead Text</label></th>
+        <td><input type="text" id="slide4_lead" name="slide4_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide4_prompt" name="slide4_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide4_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide4_box_alignment" id="slide4_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>   
+    <tr>
+      <th><label for="slide4_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide4_box_style" id="slide4_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr> 
+    </table>
+  </div>
+<h3 class="heading">Options for the 5<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide5">5<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide5" name="slide5.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_sm">5<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide5_sm" name="slide5_sm.jpg" /></td>
+        <td><label for="slide5_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide5_sm_use" name="slide5_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_repeat">Repeat 5<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide5_repeat" name="slide5_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_bgcolor">Background Color for 5<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide5_bgcolor" name="slide5_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_alt">Alt text:</label></th>
+        <td><input type="text" id="slide5_alt" name="slide5_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_link">Link to:</label></th>
+        <td><input type="text" id="slide5_link" name="slide5_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide5_showtextbox_full" name="slide5_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide5_showtextbox" name="slide5_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_headline">Headline Text</label></th>
+        <td><input type="text" id="slide5_headline" name="slide5_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_lead">Lead Text</label></th>
+        <td><input type="text" id="slide5_lead" name="slide5_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide5_prompt" name="slide5_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide5_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide5_box_alignment" id="slide5_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide5_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide5_box_style" id="slide5_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+<h3 class="heading">Options for the 6<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide6">6<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide6" name="slide6.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_sm">6<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide6_sm" name="slide6_sm.jpg" /></td>
+        <td><label for="slide6_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide6_sm_use" name="slide6_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_repeat">Repeat 6<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide6_repeat" name="slide6_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_bgcolor">Background Color for 6<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide6_bgcolor" name="slide6_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_alt">Alt text:</label></th>
+        <td><input type="text" id="slide6_alt" name="slide6_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_link">Link to:</label></th>
+        <td><input type="text" id="slide6_link" name="slide6_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide6_showtextbox_full" name="slide6_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide6_showtextbox" name="slide6_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_headline">Headline Text</label></th>
+        <td><input type="text" id="slide6_headline" name="slide6_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_lead">Lead Text</label></th>
+        <td><input type="text" id="slide6_lead" name="slide6_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide6_prompt" name="slide6_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide6_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide6_box_alignment" id="slide6_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide6_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide6_box_style" id="slide6_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+<h3 class="heading">Options for the 7<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide7">7<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide7" name="slide7.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_sm">7<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide7_sm" name="slide7_sm.jpg" /></td>
+        <td><label for="slide7_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide7_sm_use" name="slide7_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_repeat">Repeat 7<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide7_repeat" name="slide7_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_bgcolor">Background Color for 7<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide7_bgcolor" name="slide7_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_alt">Alt text:</label></th>
+        <td><input type="text" id="slide7_alt" name="slide7_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_link">Link to:</label></th>
+        <td><input type="text" id="slide7_link" name="slide7_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide7_showtextbox_full" name="slide7_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide7_showtextbox" name="slide7_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_headline">Headline Text</label></th>
+        <td><input type="text" id="slide7_headline" name="slide7_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_lead">Lead Text</label></th>
+        <td><input type="text" id="slide7_lead" name="slide7_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide7_prompt" name="slide7_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide7_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide7_box_alignment" id="slide7_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide7_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide7_box_style" id="slide7_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+<h3 class="heading">Options for the 8<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide8">8<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide8" name="slide8.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_sm">8<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide8_sm" name="slide8_sm.jpg" /></td>
+        <td><label for="slide8_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide8_sm_use" name="slide8_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_repeat">Repeat 8<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide8_repeat" name="slide8_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_bgcolor">Background Color for 8<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide8_bgcolor" name="slide8_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_alt">Alt text:</label></th>
+        <td><input type="text" id="slide8_alt" name="slide8_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_link">Link to:</label></th>
+        <td><input type="text" id="slide8_link" name="slide8_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide8_showtextbox_full" name="slide8_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide8_showtextbox" name="slide8_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_headline">Headline Text</label></th>
+        <td><input type="text" id="slide8_headline" name="slide8_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_lead">Lead Text</label></th>
+        <td><input type="text" id="slide8_lead" name="slide8_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide8_prompt" name="slide8_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide8_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide8_box_alignment" id="slide8_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide8_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide8_box_style" id="slide8_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+<h3 class="heading">Options for the 9<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide9">9<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide9" name="slide9.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_sm">9<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide9_sm" name="slide9_sm.jpg" /></td>
+        <td><label for="slide9_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide9_sm_use" name="slide9_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_repeat">Repeat 9<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide9_repeat" name="slide9_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_bgcolor">Background Color for 9<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide9_bgcolor" name="slide9_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_alt">Alt text:</label></th>
+        <td><input type="text" id="slide9_alt" name="slide9_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_link">Link to:</label></th>
+        <td><input type="text" id="slide9_link" name="slide9_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide9_showtextbox_full" name="slide9_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide9_showtextbox" name="slide9_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_headline">Headline Text</label></th>
+        <td><input type="text" id="slide9_headline" name="slide9_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_lead">Lead Text</label></th>
+        <td><input type="text" id="slide9_lead" name="slide9_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide9_prompt" name="slide9_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide9_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide9_box_alignment" id="slide9_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide9_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide9_box_style" id="slide9_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+<h3 class="heading">Options for the 10<sup>th</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
+  <div class="collapsed">
+    <table>
+      <tr>
+        <th><label for="slide10">10<sup>th</sup> Image Source <span class="note">[for use with Desktop Screens]</span></label></th>
+        <td><input type="file" id="slide10" name="slide10.jpg" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_sm">10<sup>th</sup> Image Source <span class="note">[for use with Small Devices]</span></label></th>
+        <td><input type="file" id="slide10_sm" name="slide10_sm.jpg" /></td>
+        <td><label for="slide10_sm_use">Use this for Small Devices</label>
+          <input type="checkbox" id="slide10_sm_use" name="slide10_sm_use" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_repeat">Repeat 10<sup>th</sup> Image</label></th>
+        <td><input type="checkbox" id="slide10_repeat" name="slide10_repeat" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_bgcolor">Background Color for 10<sup>th</sup> Image</label></th>
+        <td><input type="text" id="slide10_bgcolor" name="slide10_bgcolor" class="color" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_alt">Alt text:</label></th>
+        <td><input type="text" id="slide10_alt" name="slide10_alt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_link">Link to:</label></th>
+        <td><input type="text" id="slide10_link" name="slide10_link" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_showtextbox_full">Hide this Text Box</label></th>
+        <td><input type="checkbox" id="slide10_showtextbox_full" name="slide10_showtextbox_full" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
+        <td><input type="checkbox" id="slide10_showtextbox" name="slide10_showtextbox" value="1" /></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_headline">Headline Text</label></th>
+        <td><input type="text" id="slide10_headline" name="slide10_headline" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_lead">Lead Text</label></th>
+        <td><input type="text" id="slide10_lead" name="slide10_lead" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_prompt">Prompt Text</label></th>
+        <td><input type="text" id="slide10_prompt" name="slide10_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+      <th><label for="slide10_box_alignment">Text Box Alignment<span class="note"> Vertical - Horizontal</span></label></th>
+      <td>
+       <select name="slide10_box_alignment" id="slide10_box_alignment">
+          <option value="centeraligned" selected="selected">Center - Center</option>
+          <option value="leftaligned">Center - Left</option>
+          <option value="rightaligned">Center - Right</option>
+          <option value="centeralignedtop">Top - Center</option>
+          <option value="leftalignedtop">Top - Left</option>
+          <option value="rightalignedtop">Top - Right</option>
+          <option value="centeralignedbottom">Bottom - Center</option>
+          <option value="leftalignedbottom">Bottom - Left</option>
+          <option value="rightalignedbottom">Bottom - Right</option>
+       </select>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slide10_box_style">Text Box Style</label></th>
+      <td>
+       <select name="slide10_box_style" id="slide10_box_style">
+          <option value="greystyle" selected="selected">Default style</option>
+          <option value="orangestyle">orangestyle Camphor</option>
+        </select>
+      </td>
+    </tr>    
+    </table>
+  </div>
+
+</fieldset>
