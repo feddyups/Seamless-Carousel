@@ -30,6 +30,7 @@ function debounce(func, wait, immediate) {
       // Variables
       var settings = $.extend({
         timerDuration: 5000,
+        animationDuration: 800,
         useSwipeGestures: true,
         useTimer: true
       },
@@ -171,12 +172,12 @@ function debounce(func, wait, immediate) {
             complete: function () {
               changeSlideComplete($key);
             },
-            duration: 800,
+            duration: settings.animationDuration,
             easing: 'swing'
           });
         } else {
           $(slides[i]).fadeOut({
-            duration: 800,
+            duration: settings.animationDuration,
             easing: 'swing'
           });
         }
@@ -438,6 +439,7 @@ var Initiated = function(){
   // Initiate carousel
   $('#home-carousel').carousel({
         timerDuration: {{ settings.slider_timerDuration }},
+        animationDuration: {{ settings.slider_animDuration }},
         useSwipeGestures: true,
         useTimer: {{ settings.slider_autoPlay }}
   });
