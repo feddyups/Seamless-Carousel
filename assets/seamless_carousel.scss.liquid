@@ -18,60 +18,60 @@ $bsorange:#bab5a8;
   overflow: hidden;
   position: relative;
   width: 100%;
+  img {
+    display: block;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .slides {
+    position: relative;
+    div {
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+  .menu {
+    float: right;
+    margin: 5px 10px;
+    li {
+      display: inline;
+      margin-left: 8px;
+    }
+    .next a,.prev a {
+      border-bottom: 6px solid transparent;
+      border-left: 6px solid #ccc;
+      border-top: 6px solid transparent;
+      cursor: pointer;
+      display: inline-block;
+      height: 0;
+      width: 0;
+     
+    }
+    .prev a:hover {
+      border-right-color: #999;
+    }
+    .next a:hover {
+      border-left-color: #999;
+    }
+  }
+
+
 }
-.carousel img {
-  display: block;
-  height: auto;
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-  top: 0;
-}
-.carousel ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.carousel div.slides {
-  position: relative;
-}
-.carousel div.slides div {
-  left: 0;
-  position: absolute;
-  top: 0;
-}
-.carousel .menu {
-  float: right;
-  margin: 5px 10px;
-}
-.carousel .menu li {
-	display: inline;
-	margin-left: 8px;
-}
-.carousel .menu .next a {
-	border-bottom: 6px solid transparent;
-	border-left: 6px solid #ccc;
-	border-top: 6px solid transparent;
-	cursor: pointer;
-	display: inline-block;
-	height: 0;
-	width: 0;
-}
-.carousel .menu .next a:hover {
-	border-left-color: #999;
-}
-.carousel .menu .prev a {
-	border-bottom: 6px solid transparent;
-	border-right: 6px solid #ccc;
-	border-top: 6px solid transparent;
-	cursor: pointer;
-	display: inline-block;
-	height: 0;
-	width: 0;
-}
-.carousel .menu .prev a:hover {
-	border-right-color: #999;
-}
+
+
+
+
+
+
 .carousel ul.mobile-pagination {
 	display: none;
 	margin: 10px 0;
@@ -157,9 +157,6 @@ $bsorange:#bab5a8;
     display: none !important;
 }
 
-
-
-
   .textoverlay{
     color: #FFFFFF;
     display: table;
@@ -167,7 +164,7 @@ $bsorange:#bab5a8;
     height: 100%;
     letter-spacing: 0;
     line-height: normal;
-    position: relative;
+    position: relative !important;
     text-transform: uppercase;
     width:100%;
     max-width:960px;
@@ -304,9 +301,6 @@ $bsorange:#bab5a8;
 
 
 /*Control the views of the images for mobile or not*/
-
-
-
 @media all and (min-width: 1480px) {
   .paginationwrap {
     width: 1440px;

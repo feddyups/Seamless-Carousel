@@ -3,7 +3,8 @@
 {% unless loop == '0' %}
 <div id="slider">
   <div id="home">
-    <div id="home_feature" 
+    <div id="home_feature"
+      style="background-color:{{ settings.viewport_bg }};" 
       {% if settings.showtextbox %}class="hidetextboxformobile"{% endif %} 
       data-normalwidth="{{ settings.normalwidth }}" 
       data-normalheight="{{ settings.normalheight }}" 

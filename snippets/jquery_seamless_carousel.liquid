@@ -63,7 +63,7 @@ function debounce(func, wait, immediate) {
           var dataSmallScreen = $(slides[i]).find('a').attr('smallscreen');
           //getting the value as a string
           var repeating_bgcolor = $(slides[i]).find('a').attr("data-bgcolor");
-          if ((repeating_bgcolor !== undefined) && (!repeating_value) && (repeating_bgcolor !== undefined)) {
+          if ((!repeating_value) && (repeating_bgcolor !== undefined)) {
             $(slides[i]).css({
               'background-color': repeating_bgcolor + ''
             });
@@ -218,11 +218,9 @@ function debounce(func, wait, immediate) {
     }
     // Resize
     var resize = debounce(function() {
-      
       var win_width = $(window).width();
       var win_height = $(window).height();
       var img_width, img_height, img_ratio, img_unit;
-
       var theImgWidth       = $('#home_feature').data("normalwidth");
       var theImgHeight      = $('#home_feature').data("normalheight");
       var theMobileImgWidth = $('#home_feature').data("mobilewidth");
@@ -236,10 +234,6 @@ function debounce(func, wait, immediate) {
       //console.log('theImgWidth '+theImgWidth);
       //console.log('theMobileImgWidth '+theMobileImgWidth);
       //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
-
-
-      
-       
         //img_width = theImgWidth;
         //img_height = theImgHeight;
         //X2 images, mobile view
@@ -277,7 +271,6 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'none';
           var desktopHide = 'block';
-          //console.log('desktop normal: Img Width '+img_width+' Image Height: '+img_height);
         }
          
         $(self).find('div.loading-bar').css({
@@ -296,13 +289,8 @@ function debounce(func, wait, immediate) {
           marginLeft: img_width * -0.5
         });
 
-
         $(self).find('div.slides > div > div > a img:nth-child(3)').css("display", mobileHide);
         $(self).find('div.slides > div > div > a img:nth-child(2)').css("display", desktopHide);
-         
-        
-    
-    
     }, 250);
 
 
@@ -418,14 +406,14 @@ var Initiated = function(){
     home_slides += '</div></div></div>';
     home_slides += '<img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage;
     home_slides += '</a>';
-    home_slides += '</div></div>';
+    home_slides += '</div>'
+    home_slides += '</div>';
                  
     if (dataShowPagination) {
       home_pagination += '<li><a>' + dataAlt + '</a><span>/</span></li>';
       home_mobile_pagination += '<li><a>&bull;</a></li>';
     }
   });
-      
   $('#home_feature_images').remove();
   $( "#home_feature" ).fadeTo( "fast" , 1, function() {});
 
@@ -435,7 +423,6 @@ var Initiated = function(){
   else {
     $('#home_feature').prepend('<div id="home-carousel" class="carousel"><div class="slides">' + home_slides + '</div></div>');
   }
-      
   // Initiate carousel
   $('#home-carousel').carousel({
         timerDuration: {{ settings.slider_timerDuration }},
@@ -444,9 +431,5 @@ var Initiated = function(){
         useTimer: {{ settings.slider_autoPlay }}
   });
 };
-
 if ($('#home_feature_images a').length > 0) {$(document).ready(function () {Initiated();});}
-
-
-
 </script>
