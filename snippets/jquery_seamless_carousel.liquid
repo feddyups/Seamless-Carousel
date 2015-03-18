@@ -361,9 +361,10 @@ var Initiated = function(){
         dataShowForDesktop  = $(self).data("showfordesktop"),
         dataPrompt          = $(self).data("prompt"),
         dataSrc             = $(self).find('img').attr("src"),
+        dataAlt             = $(self).find('img').attr("alt"),
         dataRepetition      = $(self).data("repeat"),
         dataSmallScreen     = $(self).data("smallscreen"),
-        dataBgColor         = $(self).attr("data-bgcolor"),
+        dataBgColor         = $(self).data("bgcolor"),
         headline_html       = '',
         prompt_html         = '',
         smallscreenclass    = 'smalldisabled',
@@ -385,7 +386,7 @@ var Initiated = function(){
     if (dataSmallScreen) {
       smallscreenclass='largealternative',
       divsmallscreenclass='smallenablediv',
-      additionalimage = '<img class="mobilescreen" src="' + dataSmallScreen + '" alt="' + $(self).find('img').attr("alt") + '" />';
+      additionalimage = '<img class="mobilescreen" src="' + dataSmallScreen + '" alt="' + dataAlt + '" />';
     } 
     
     if (dataShowTextBox) {
@@ -414,12 +415,12 @@ var Initiated = function(){
     home_slides += '<div class="unframed">'+dataLead+'</div>';
     home_slides += '<div class="linkprompt">'+prompt_html+'</div>';
     home_slides += '</div></div></div>';
-    home_slides += '<img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + $(self).find('img').attr("alt") + '" />'+additionalimage;
+    home_slides += '<img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage;
     home_slides += '</a>';
     home_slides += '</div></div>';
                  
     if (dataShowPagination) {
-      home_pagination += '<li><a>' + $(self).find('img').attr("alt") + '</a><span>/</span></li>';
+      home_pagination += '<li><a>' + dataAlt + '</a><span>/</span></li>';
       home_mobile_pagination += '<li><a>&bull;</a></li>';
     }
   });
@@ -438,7 +439,7 @@ var Initiated = function(){
   $('#home-carousel').carousel({
         timerDuration: {{ settings.slider_timerDuration }},
         useSwipeGestures: true,
-        useTimer: true
+        useTimer: {{ settings.slider_autoPlay }}
   });
 };
 
