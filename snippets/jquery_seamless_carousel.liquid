@@ -29,7 +29,6 @@ function debounce(func, wait, immediate) {
     return this.each(function () {
       // Variables
       var settings = $.extend({
-        layout: 'home',
         timerDuration: 5000,
         useSwipeGestures: true,
         useTimer: true
@@ -55,7 +54,7 @@ function debounce(func, wait, immediate) {
       $(self).find('.pagination a:eq(0)').addClass('active');
       $(self).find('.mobile-pagination a:eq(0)').addClass('active');
       // set tiling background-images on homepage, or set background color
-      if (settings.layout == 'home') {
+      
         for (var i = 0; i < slides.length; i++) {
           var image_src = $(slides[i]).find('img').prop('src');
           //var small_screen_src = $(slides[i]).find('a').data('smallscreen');
@@ -78,7 +77,7 @@ function debounce(func, wait, immediate) {
           }
         }
         $(self).append('<div class="loading-bar"></div>');
-      }
+      
       // events
       $(self).find('.menu .next a').bind('click', next);
       $(self).find('.menu .prev a').bind('click', prev);
@@ -114,7 +113,7 @@ function debounce(func, wait, immediate) {
       if (!is_animating && current_slide !== $key) {
         clearTimeout(timer);
         is_animating = true;
-        if (settings.layout == 'home') {
+       
           var image_src = $(slides[$key]).find('img').data('src');
           /*if(image_src === undefined){
             image_src = $(slides[$key]).find('img').attr('src');
@@ -148,7 +147,7 @@ function debounce(func, wait, immediate) {
             image.src = image_src;
             return;
           }
-        }
+       
         animateInSlide($key);
       }
     }
@@ -218,6 +217,7 @@ function debounce(func, wait, immediate) {
     }
     // Resize
     var resize = debounce(function() {
+      
       var win_width = $(window).width();
       var win_height = $(window).height();
       var img_width, img_height, img_ratio, img_unit;
@@ -237,8 +237,8 @@ function debounce(func, wait, immediate) {
       //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
 
 
-      switch (settings.layout) {
-        case 'home':
+      
+       
         //img_width = theImgWidth;
         //img_height = theImgHeight;
         //X2 images, mobile view
@@ -299,8 +299,7 @@ function debounce(func, wait, immediate) {
         $(self).find('div.slides > div > div > a img:nth-child(3)').css("display", mobileHide);
         $(self).find('div.slides > div > div > a img:nth-child(2)').css("display", desktopHide);
          
-        break;
-      }
+        
     
     
     }, 250);
@@ -373,12 +372,14 @@ var Initiated = function(){
         showfordsktp        = '',
         additionalimage     = '';
 
+        console.log('dataBgColor'+dataBgColor);
+
     if (dataHeadline) {
       headline_html = '<div class="framed">'+dataHeadline+'</div>';
     }
     
     if (dataPrompt) {
-      prompt_html = '<span class="leftspanned inthelink">&lt; </span>'+dataPrompt+'<span class="rightspanned inthelink"> &gt;</span>';
+      prompt_html = '<span class="leftspanned inthelink">&lt;</span>'+dataPrompt+'<span class="rightspanned inthelink">&gt;</span>';
     } 
    
     if (dataSmallScreen) {
@@ -395,7 +396,8 @@ var Initiated = function(){
       showfordsktp='hideoverlay';
     } 
 
-    if (dataBgColor.length != 0) {
+    if (dataBgColor.length === 0) {
+      console.log('undefined dataBgColor'+dataBgColor);
       dataBgColor='undefined';
     }
 
@@ -434,7 +436,9 @@ var Initiated = function(){
       
   // Initiate carousel
   $('#home-carousel').carousel({
-    layout: 'home'
+        timerDuration: {{ settings.slider_timerDuration }},
+        useSwipeGestures: true,
+        useTimer: true
   });
 };
 
