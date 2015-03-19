@@ -375,8 +375,15 @@ var Initiated = function(){
     if (dataSmallScreen) {
       smallscreenclass='largealternative',
       divsmallscreenclass='smallenablediv',
-      additionalimage = '<img class="mobilescreen" src="' + dataSmallScreen + '" alt="' + dataAlt + '" />';
-    } 
+      $.get(dataSmallScreen)
+        .done(function() { 
+          additionalimage = '<img class="mobilescreen" src="' + dataSmallScreen + '" alt="' + dataAlt + '" />';
+        })
+        .fail(function() { 
+         additionalimage = '';
+         dataSmallScreen=false;
+        })
+    }
     
     if (dataShowTextBox) {
       showformobile='hideformobile';
@@ -404,7 +411,7 @@ var Initiated = function(){
     home_slides += '<div class="unframed">'+dataLead+'</div>';
     home_slides += '<div class="linkprompt">'+prompt_html+'</div>';
     home_slides += '</div></div></div>';
-    home_slides += '<img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage;
+    home_slides += '<picture><img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage+'</picture>';
     home_slides += '</a>';
     home_slides += '</div>'
     home_slides += '</div>';
