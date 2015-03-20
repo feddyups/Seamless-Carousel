@@ -36,14 +36,15 @@ function debounce(func, wait, immediate) {
       },
       $settings
     );
-    var self = this;
-    var slides = [];
-    var timer = 0;
-    var current_slide = 0;
-    var is_animating = false;
-    var loading_bar_percent = 0;
-    var loading_bar_timer = 0;
-    // Constructor, pagination included anyway, as the load is insignificant. After all, we ARE on a giant's shoulders, aren't we?
+    var self = this,
+        slides              = [],
+        timer               = 0,
+        current_slide       = 0,
+        is_animating        = false,
+        loading_bar_percent = 0,
+        loading_bar_timer   = 0;
+    
+    // Constructor, pagination included anyway, as the load is insignificant.
     function constructor() {
       // get slides
       $(self).find('div.slides > div').each(function (index) {
@@ -52,17 +53,23 @@ function debounce(func, wait, immediate) {
         }
         slides.push(this);
       });
+
       $(self).find('.pagination a:eq(0)').addClass('active');
       $(self).find('.mobile-pagination a:eq(0)').addClass('active');
       // set tiling background-images on homepage, or set background color
       
         for (var i = 0; i < slides.length; i++) {
-          var image_src = $(slides[i]).find('img').prop('src');
-          //var small_screen_src = $(slides[i]).find('a').data('smallscreen');
-          var repeating_value = $(slides[i]).find('a').data('repeat');
-          var dataSmallScreen = $(slides[i]).find('a').attr('smallscreen');
-          //getting the value as a string
-          var repeating_bgcolor = $(slides[i]).find('a').attr("data-bgcolor");
+          var image_src         = $(slides[i]).find('img').prop('src'),
+              repeating_value   = $(slides[i]).find('a').data('repeat'),
+              dataSmallScreen   = $(slides[i]).find('a').data('smallscreen'),
+              repeating_bgcolor = $(slides[i]).find('a').attr("data-bgcolor");
+          
+          if (dataSmallScreen) {
+            $(slides[i]).addClass("withMobileImg");
+          }
+          else{
+            $(slides[i]).addClass("withoutMobileImg");
+          }
           if ((!repeating_value) && (repeating_bgcolor !== undefined)) {
             $(slides[i]).css({
               'background-color': repeating_bgcolor + ''
@@ -122,6 +129,13 @@ function debounce(func, wait, immediate) {
           var repeating_value = $(slides[$key]).find('a').data('repeat');
           var dataSmallScreen = $(slides[$key]).find('a').data('smallscreen');
           var repeating_bgcolor = $(slides[$key]).find('a').attr("data-bgcolor");
+
+          if (dataSmallScreen) {
+            $(slides[$key]).addClass("withMobileImg");
+          }
+          else{
+            $(slides[$key]).addClass("withoutMobileImg");
+          }
           if (image_src !== undefined && image_src !== false) {
             var image = new Image();
             preloaderStart();
@@ -218,16 +232,23 @@ function debounce(func, wait, immediate) {
     }
     // Resize
     var resize = debounce(function() {
-      var win_width = $(window).width();
-      var win_height = $(window).height();
-      var img_width, img_height, img_ratio, img_unit;
-      var theImgWidth       = $('#home_feature').data("normalwidth");
-      var theImgHeight      = $('#home_feature').data("normalheight");
-      var theMobileImgWidth = $('#home_feature').data("mobilewidth");
-      var theMobileImgHeight = $('#home_feature').data("mobileheight");
-      var theMobileImgWidthX2 = theMobileImgWidth/2;
-      var theMobileImgHeightX2 = theMobileImgHeight/2;
-      var inverseAspect = theImgHeight/theImgWidth;
+      var win_width             = $(window).width(),
+          win_height            = $(window).height(),
+          img_width, 
+          img_height, 
+          theImgWidth           = $('#home_feature').data("normalwidth"),
+          theImgHeight          = $('#home_feature').data("normalheight"),
+          theMobileImgWidth     = $('#home_feature').data("mobilewidth"),
+          theMobileImgHeight    = $('#home_feature').data("mobileheight"),
+
+          theMobileImgWidthX2   = theMobileImgWidth/2,
+          theMobileImgHeightX2  = theMobileImgHeight/2,
+
+          inverseAspect         = theImgHeight/theImgWidth,
+          inverseMobileAspect   = theMobileImgHeight/theMobileImgWidth;
+      
+
+
       //console.log('inverseAspect '+inverseAspect);
       //console.log('theImgWidth '+theImgWidth);
       //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
@@ -236,6 +257,7 @@ function debounce(func, wait, immediate) {
       //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
         //img_width = theImgWidth;
         //img_height = theImgHeight;
+        
         //X2 images, mobile view
         if (win_width <= theMobileImgWidthX2) {
           img_width = theMobileImgWidthX2;
@@ -244,16 +266,21 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'block';
           var desktopHide = 'none';
-          //console.log('X2 for mobile: Img Width '+theMobileImgWidthX2+' Image Height: '+theMobileImgHeightX2);
+          console.log('X2 for mobile: Img Width '+theMobileImgWidthX2+' Image Height: '+theMobileImgHeightX2);
           //Mobile View
         } else if ((win_width <= theMobileImgWidth) && (win_width > theMobileImgWidthX2)) {
-          img_width = theMobileImgWidth;
-          img_height = theMobileImgHeight;
+          //img_width = theMobileImgWidth;
+          //img_height = theMobileImgHeight;
+          img_width = win_width;
+          img_height = ((inverseMobileAspect) * (win_width));
           img_width *= 1;
           img_height *= 1;
           var mobileHide = 'block';
           var desktopHide = 'none';
-          //console.log('mobile: Img Width '+theMobileImgWidth+' Image Height: '+theMobileImgHeight);
+          console.log('mobile: Img Width '+img_width+' Image Height: '+img_height);
+          console.log('mobile: theMobileImgWidth '+theMobileImgWidth+' theMobileImgHeight: '+theMobileImgHeight);
+          console.log('mobile: inverseMobileAspect '+inverseMobileAspect);
+
           //Between Mobile and Full Desktop View
         } else if ((win_width < theImgWidth) && (win_width > theMobileImgWidth)) {
           img_width = win_width;
@@ -262,7 +289,7 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'none';
           var desktopHide = 'block';
-          //console.log('desktop small: Img Width '+img_width+' Image Height: '+img_height);
+          console.log('desktop small: Img Width '+img_width+' Image Height: '+img_height);
           //Higher than the image view
         }else if (win_width >= theImgWidth) {
           img_width = theImgWidth;
@@ -271,14 +298,17 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'none';
           var desktopHide = 'block';
+          console.log('desktop : Img Width '+img_width+' Image Height: '+img_height);
         }
          
         $(self).find('div.loading-bar').css({
           top: 0 // img_height - 3
         });
+        
         $(self).find('div.slides').css({
           height: img_height
         });
+        
         $(self).find('div.slides > div').css({
           width: '100%',
           height: img_height
@@ -289,8 +319,9 @@ function debounce(func, wait, immediate) {
           marginLeft: img_width * -0.5
         });
 
-        $(self).find('div.slides > div > div > a img:nth-child(3)').css("display", mobileHide);
-        $(self).find('div.slides > div > div > a img:nth-child(2)').css("display", desktopHide);
+        $(self).find('.mobilescreen').css("display", mobileHide);
+        //if there is a mobile image set, then do your stuff
+        $(self).find('.swapper.mobile-img-set').css("display", desktopHide);
     }, 250);
 
 
@@ -325,6 +356,10 @@ function debounce(func, wait, immediate) {
         width: loading_bar_percent + '%'
       }).delay(500).fadeOut();
     }
+
+
+
+   
     // Init
     constructor();
   });
@@ -335,34 +370,67 @@ function debounce(func, wait, immediate) {
 // Get Set, let's go 
 var Initiated = function(){
   var dataShowPagination      = $('#home_feature_images').data("showpagination"),
+      theImgWidth             = $('#home_feature').data("normalwidth"),
+      theMobileImgWidth       = $('#home_feature').data("mobilewidth"),
       home_slides             = '',
       home_pagination         = '',
-      home_mobile_pagination  = '';
+      home_mobile_pagination  = '',
+      img_1024                = '1024x1024',
+      img_600                 = 'grande',
+      img_480                 = 'large',
+      img_240                 = 'medium';
   
   $('#home_feature_images a').each(function (index) {
-    
-        var self            = this,
-        dataHeadline        = $(self).data("headline"),
-        dataLead            = $(self).data("lead"),
-        dataAlignment       = $(self).data("alignment"),
-        dataBoxStyle        = $(self).data("style"),
-        dataShowTextBox     = $(self).data("showformobile"),
-        dataShowForDesktop  = $(self).data("showfordesktop"),
-        dataPrompt          = $(self).data("prompt"),
-        dataSrc             = $(self).find('img').attr("src"),
-        dataAlt             = $(self).find('img').attr("alt"),
-        dataRepetition      = $(self).data("repeat"),
-        dataSmallScreen     = $(self).data("smallscreen"),
-        dataBgColor         = $(self).data("bgcolor"),
-        headline_html       = '',
-        prompt_html         = '',
-        smallscreenclass    = 'smalldisabled',
-        showformobile       = 'centerformobile',
-        divsmallscreenclass = 'smalldisablediv',
-        showfordsktp        = '',
-        additionalimage     = '';
+    var self                  = this,
+        dataHeadline          = $(self).data("headline"),
+        dataLead              = $(self).data("lead"),
+        dataAlignment         = $(self).data("alignment"),
+        dataBoxStyle          = $(self).data("style"),
+        dataShowTextBox       = $(self).data("showformobile"),
+        dataShowForDesktop    = $(self).data("showfordesktop"),
+        dataPrompt            = $(self).data("prompt"),
+        dataSrc               = $(self).find('img').attr("src"),
+        dataAlt               = $(self).find('img').attr("alt"),
+        dataRepetition        = $(self).data("repeat"),
+        dataSmallScreen       = $(self).data("smallscreen"),
+        dataBgColor           = $(self).data("bgcolor"),
+        headline_html         = '',
+        prompt_html           = '',
+        smallscreenclass      = 'no-mobile-img-set',
+        showformobile         = 'centerformobile',
+        divsmallscreenclass   = 'smalldisablediv',
+        showfordsktp          = '',
+        additionalimage       = '',
+        additionalimageSet    = '',
+        newdataSrc_1024       = '',
+        newdataSrc_600        = '',
+        newdataSrc_480        = '',
+        newdataSrc_240        = '',
+        newdataSmallSrc_1024  = '',
+        newdataSmallSrc_600   = '',
+        newdataSmallSrc_480   = '',
+        newdataSmallSrc_240   = '';
 
-        console.log('dataBgColor'+dataBgColor);
+    /*Shopify says 
+    medium Returns the image at a maximum size of 240 by 240 pixels.
+    large Returns the image at a maximum size of 480 by 480 pixels.
+    grande Returns the image at a maximum size of 600 by 600 pixels.
+    1024x1024 Returns the image at a maximum size of 1024 by 1024 pixels.
+    */
+
+    function bigshopifysizer(imgsrc,shopifysize1024,grande,large,medium){
+      newdataSrc_1024   = imgsrc.replace(".jpg","_"+shopifysize1024+".jpg");
+      newdataSrc_600    = imgsrc.replace(".jpg","_"+grande+".jpg");
+      newdataSrc_480    = imgsrc.replace(".jpg","_"+large+".jpg");
+      newdataSrc_240    = imgsrc.replace(".jpg","_"+medium+".jpg");
+    }
+
+    function smallshopifysizer(imgsrc,shopifysize1024,grande,large,medium){
+      newdataSmallSrc_1024   = imgsrc.replace(".jpg","_"+shopifysize1024+".jpg");
+      newdataSmallSrc_600    = imgsrc.replace(".jpg","_"+grande+".jpg");
+      newdataSmallSrc_480    = imgsrc.replace(".jpg","_"+large+".jpg");
+      newdataSmallSrc_240    = imgsrc.replace(".jpg","_"+medium+".jpg");
+    }
 
     if (dataHeadline) {
       headline_html = '<div class="framed">'+dataHeadline+'</div>';
@@ -371,16 +439,12 @@ var Initiated = function(){
     if (dataPrompt) {
       prompt_html = '<span class="leftspanned inthelink">&lt;</span>'+dataPrompt+'<span class="rightspanned inthelink">&gt;</span>';
     } 
-   
+    //Make sure the User has not accidentally chosen "Use this for Mobile" through the settings, but still hasn't loaded any mobile image
     if (dataSmallScreen) {
-      smallscreenclass='largealternative',
-      divsmallscreenclass='smallenablediv',
       $.get(dataSmallScreen)
-        .done(function() { 
-          additionalimage = '<img class="mobilescreen" src="' + dataSmallScreen + '" alt="' + dataAlt + '" />';
-        })
         .fail(function() { 
          additionalimage = '';
+         additionalimageSet = '';
          dataSmallScreen=false;
         })
     }
@@ -401,6 +465,27 @@ var Initiated = function(){
     if (dataSrc === undefined) {
       dataSrc = $(self).find('img').data("src");
     }
+
+    //Create the Shopify image Sizes for the Desktop Image
+    bigshopifysizer(dataSrc,img_1024,img_600,img_480,img_240);
+    
+    if (dataSmallScreen) {
+      smallscreenclass='mobile-img-set',
+      divsmallscreenclass='smallenablediv';
+      //Create the Shopify image Sizes for the Mobile Image
+      smallshopifysizer(dataSmallScreen,img_1024,img_600,img_480,img_240);
+      //only load the mobile Image when the viewport is smaller than theMobileImgWidth-1px.
+      additionalimage += '<img';
+      additionalimage += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w"';
+      additionalimage += ' class="mobilescreen"';
+      additionalimage += ' src="'+dataSmallScreen+'"';
+      additionalimage += ' alt="'+dataAlt+'" />';
+      //console.log(additionalimageSet);
+
+      additionalimageSet = '<source';
+      additionalimageSet += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w" />';
+    
+    }
                              
     home_slides += '<div>'
     home_slides += '<div>';
@@ -411,7 +496,40 @@ var Initiated = function(){
     home_slides += '<div class="unframed">'+dataLead+'</div>';
     home_slides += '<div class="linkprompt">'+prompt_html+'</div>';
     home_slides += '</div></div></div>';
-    home_slides += '<picture><img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage+'</picture>';
+    //only load the desktop img when the viewport is wider than theMobileImgWidth. On smaller viewports, always load the mobile equivalents, if they exist.
+    home_slides += '<picture>';
+    home_slides += '<source';
+    if (dataSmallScreen) {
+    home_slides += ' media="(min-width: '+theMobileImgWidth+'px)"';
+    }
+    home_slides += ' srcset="'+newdataSrc_1024+' 1024w,   '+newdataSrc_600+' 600w,   '+newdataSrc_480+' 480w,    '+newdataSrc_240+' 240w" />';
+    if (dataSmallScreen) {
+      home_slides +=  additionalimageSet;
+    }
+    home_slides += '<img';
+    home_slides += ' class="swapper '+smallscreenclass+'"';
+    home_slides += ' src="'+dataSrc+'"';
+    home_slides += ' alt="'+dataAlt+'" />';
+    home_slides += '</picture>';
+    if (dataSmallScreen) {
+      home_slides += additionalimage;
+    }
+
+
+    
+    
+
+   
+
+    
+
+    
+
+    //home_slides += '<picture><img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage+'</picture>';
+    
+
+
+
     home_slides += '</a>';
     home_slides += '</div>'
     home_slides += '</div>';
