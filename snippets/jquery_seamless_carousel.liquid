@@ -2,7 +2,7 @@
 /*
 SUBJECT:    A nice little carousel, like when we we were kids v1.4
 RELEASED:   06.12.2013
-UPDATED:    17.03.2015
+UPDATED:    21.03.2015
 AUTHOR:     feddyups at Webatect Networks, on behalf of Tricky3 Web Mangling
 EMAIL:      feddyups@gmail.com, rick@tricky3.co.uk
 WEBSITE:    http://www.freelancer.com/u/feddyups.html
@@ -44,7 +44,6 @@ function debounce(func, wait, immediate) {
         loading_bar_percent = 0,
         loading_bar_timer   = 0;
     
-    // Constructor, pagination included anyway, as the load is insignificant.
     function constructor() {
       // get slides
       $(self).find('div.slides > div').each(function (index) {
@@ -370,15 +369,19 @@ function debounce(func, wait, immediate) {
 // Get Set, let's go 
 var Initiated = function(){
   var dataShowPagination      = $('#home_feature_images').data("showpagination"),
+      dataThumbPagination     = $('#home_feature_images').data("showthumbnails"),
       theImgWidth             = $('#home_feature').data("normalwidth"),
       theMobileImgWidth       = $('#home_feature').data("mobilewidth"),
       home_slides             = '',
-      home_pagination         = '',
-      home_mobile_pagination  = '',
+      thumb_render            = '',
+      next_prev_render        = '',
+      mobile_next_prev_render = '',
+      full_render             = '',
       img_1024                = '1024x1024',
       img_600                 = 'grande',
       img_480                 = 'large',
       img_240                 = 'medium';
+      img_50                  = 'thumb';
   
   $('#home_feature_images a').each(function (index) {
     var self                  = this,
@@ -406,10 +409,12 @@ var Initiated = function(){
         newdataSrc_600        = '',
         newdataSrc_480        = '',
         newdataSrc_240        = '',
+        newdataSrc_50         = '',
         newdataSmallSrc_1024  = '',
         newdataSmallSrc_600   = '',
         newdataSmallSrc_480   = '',
         newdataSmallSrc_240   = '';
+        newdataSmallSrc_50   = '';
 
     /*Shopify says 
     medium Returns the image at a maximum size of 240 by 240 pixels.
@@ -418,18 +423,20 @@ var Initiated = function(){
     1024x1024 Returns the image at a maximum size of 1024 by 1024 pixels.
     */
 
-    function bigshopifysizer(imgsrc,shopifysize1024,grande,large,medium){
+    function bigshopifysizer(imgsrc,shopifysize1024,grande,large,medium,thumb){
       newdataSrc_1024   = imgsrc.replace(".jpg","_"+shopifysize1024+".jpg");
       newdataSrc_600    = imgsrc.replace(".jpg","_"+grande+".jpg");
       newdataSrc_480    = imgsrc.replace(".jpg","_"+large+".jpg");
       newdataSrc_240    = imgsrc.replace(".jpg","_"+medium+".jpg");
+      newdataSrc_50    = imgsrc.replace(".jpg","_"+thumb+".jpg");
     }
 
-    function smallshopifysizer(imgsrc,shopifysize1024,grande,large,medium){
+    function smallshopifysizer(imgsrc,shopifysize1024,grande,large,medium,thumb){
       newdataSmallSrc_1024   = imgsrc.replace(".jpg","_"+shopifysize1024+".jpg");
       newdataSmallSrc_600    = imgsrc.replace(".jpg","_"+grande+".jpg");
       newdataSmallSrc_480    = imgsrc.replace(".jpg","_"+large+".jpg");
       newdataSmallSrc_240    = imgsrc.replace(".jpg","_"+medium+".jpg");
+      newdataSmallSrc_50    = imgsrc.replace(".jpg","_"+thumb+".jpg");
     }
 
     if (dataHeadline) {
@@ -467,13 +474,13 @@ var Initiated = function(){
     }
 
     //Create the Shopify image Sizes for the Desktop Image
-    bigshopifysizer(dataSrc,img_1024,img_600,img_480,img_240);
+    bigshopifysizer(dataSrc,img_1024,img_600,img_480,img_240,img_50);
     
     if (dataSmallScreen) {
       smallscreenclass='mobile-img-set',
       divsmallscreenclass='smallenablediv';
       //Create the Shopify image Sizes for the Mobile Image
-      smallshopifysizer(dataSmallScreen,img_1024,img_600,img_480,img_240);
+      smallshopifysizer(dataSmallScreen,img_1024,img_600,img_480,img_240,img_50);
       //only load the mobile Image when the viewport is smaller than theMobileImgWidth-1px.
       additionalimage += '<img';
       additionalimage += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w"';
@@ -514,40 +521,60 @@ var Initiated = function(){
     if (dataSmallScreen) {
       home_slides += additionalimage;
     }
-
-
-    
-    
-
-   
-
-    
-
-    
-
-    //home_slides += '<picture><img class="swapper '+smallscreenclass+'" src="' + dataSrc + '" alt="' + dataAlt + '" />'+additionalimage+'</picture>';
-    
-
-
-
     home_slides += '</a>';
     home_slides += '</div>'
     home_slides += '</div>';
-                 
+
     if (dataShowPagination) {
-      home_pagination += '<li><a>' + dataAlt + '</a><span>/</span></li>';
-      home_mobile_pagination += '<li><a>&bull;</a></li>';
+      if (dataThumbPagination) {
+        thumb_render += '<li>';
+        thumb_render += '<a>';
+        thumb_render += '<img';
+        thumb_render += ' class="thumbswapper"';
+        thumb_render += ' src="'+newdataSrc_50+'"';
+        thumb_render += ' alt="'+dataAlt+'" /> ';
+        thumb_render += '</a>';
+        thumb_render += '<span>/</span>';
+        thumb_render += '</li>';
+      }
+
+      next_prev_render +='<li class="prev"><a></a></li>';
+      next_prev_render +='<li class="next"><a></a></li>';
+
+      mobile_next_prev_render += '<li><a>&bull;</a></li>';
     }
+                 
+    
   });
   $('#home_feature_images').remove();
   $( "#home_feature" ).fadeTo( "fast" , 1, function() {});
 
+  
+  full_render +='<div id="home-carousel" class="carousel">';
+  full_render +='<div class="slides">' + home_slides + '</div>';
   if (dataShowPagination) {
-    $('#home_feature').prepend('<div id="home-carousel" class="carousel"><div class="slides">' + home_slides + '</div><div class="paginationwrap"><ul class="menu"><li class="prev"><a></a></li><li class="next"><a></a></li></ul><ul class="pagination">' + home_pagination + '</ul><ul class="mobile-pagination">' + home_mobile_pagination + '</ul></div></div>');
+    full_render +='<div class="paginationwrap">';
+    //next/previous
+    full_render +='<ul class="menu">';
+    full_render += next_prev_render;
+    full_render +='</ul>';
+    //thumbnails
+    if (dataThumbPagination) {
+      full_render +='<ul class="thumb_pagination">';
+      full_render += thumb_render;
+      full_render += '</ul>';
+    }
+
+    full_render += '<ul class="mobile-pagination">';
+    full_render +=  mobile_next_prev_render;
+    full_render += '</ul>';
+
+    full_render +='</div>';
   }
-  else {
-    $('#home_feature').prepend('<div id="home-carousel" class="carousel"><div class="slides">' + home_slides + '</div></div>');
-  }
+  full_render +='</div>';
+
+  $('#home_feature').prepend(full_render);
+  
   // Initiate carousel
   $('#home-carousel').carousel({
         timerDuration: {{ settings.slider_timerDuration }},

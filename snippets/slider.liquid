@@ -14,6 +14,7 @@
     <div 
       id="home_feature_images" 
       data-showpagination="{{ settings.showpagination }}"
+      data-showthumbnails="{{ settings.slider_showthumbnails }}"
     >
     {% for i in (0..loop) %}
       {% capture alignment %}slide{{ slides[i] }}_box_alignment{% endcapture %}

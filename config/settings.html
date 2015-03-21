@@ -1,13 +1,7 @@
 <fieldset>
   <legend>Homepage Slideshow</legend>
-  <h3 class="heading">General Options </h3><p class="note">The following will affect visual aspects of the slideshow, e.g. pagination and general background color. </p>
+  <h3 class="heading">General Options </h3><p class="note">The following will affect visual aspects of the slideshow, e.g. Slides' order, animation time and general background color. </p>
   <table>
-    <tr>
-      <td colspan="2">
-        <p class="note">Slider may take up to two versions of each image - one for desktop and one for mobile view</p>
-        <p class="note">Leave the text fields empty if you want just an image slide (without content)</p>
-      </td>
-    </tr>
     <tr>
       <th><label for="viewport_bg">Viewport Background</label></th>
       <td><input type="text" id="viewport_bg" name="viewport_bg" class="color" value="#FFFFFF"/></td>
@@ -20,41 +14,52 @@
       </td>
     </tr>
     <tr>
-      <th><label for="slider_timerDuration">Slide Duration</label></th>
-      <td>
-        <input type="text" id="slider_timerDuration" name="slider_timerDuration" class="text" value="5000" />
-        <p class="note">Expressed in ms, e.g. 5000</p>
-      </td>
-    </tr>
-    <tr>
       <th><label for="slider_animDuration">Animation Duration</label></th>
       <td>
         <input type="text" id="slider_animDuration" name="slider_animDuration" class="text" value="800" />
         <p class="note">Expressed in ms, e.g. 800</p>
       </td>
     </tr>
+    </table>
+    <table>
+    <h3 class="heading">Navigation Options </h3><p class="note">Influence the way the user interacts with your images. </p>
     <tr>
       <th><label for="slider_autoPlay">Use AutoPlay</label></th>
       <td><input type="checkbox" id="slider_autoPlay" name="slider_autoPlay" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_timerDuration">Slide Duration</label></th>
+      <td>
+        <input type="text" id="slider_timerDuration" name="slider_timerDuration" class="text" value="5000" />
+        <p class="note">If AutoPlay is Active, Slide Duration is expressed in ms, e.g. 5000</p>
+      </td>
     </tr>
     <tr>
       <th><label for="showpagination">Show Pagination</label></th>
       <td><input type="checkbox" id="showpagination" name="showpagination" value="1" /></td>
     </tr>
     <tr>
-      <th><label for="showtextbox">Hide All the Text Boxes for the mobile View</label></th>
-      <td><input type="checkbox" id="showtextbox" name="showtextbox" value="1" /></td>
+      <th><label for="slider_showthumbnails">Use Thumbnail Navigation</label></th>
+      <td><input type="checkbox" id="slider_showthumbnails" name="slider_showthumbnails" value="1" /></td>
     </tr>
-    
+  </table>
+  <table>
+    <h3 class="heading">Image &amp; Content Options </h3>
+    <p class="note">Slider may take up to two versions of each image - one for desktop and one for mobile view</p>
+    <p class="note">Leave the text fields empty if you want just an image slide (without content)</p>
     <tr>
-        <th><label for="normalwidth">Desktop View : Width x Height </label></th>
-        <td><input type="number" id="normalwidth" name="normalwidth" class="number" value="1850"/> x <input type="number" id="normalheight" name="normalheight" class="number" value="706"/> px</td>
+        <th><label for="normalwidth">Desktop View : Width x Height (expressed in px) </label></th>
+        <td><input type="number" id="normalwidth" name="normalwidth" class="number" value="1850"/> x <input type="number" id="normalheight" name="normalheight" class="number" value="706"/></td>
     </tr>
     <tr>
-        <th><label for="mobilewidth">Mobile View : Width x Height  </label>
+        <th><label for="mobilewidth">Mobile View : Width x Height (expressed in px)  </label>
           <p class="note">make sure it is the same aspect ratio with the Desktop Image</p>
         </th>
-        <td><input type="number" id="mobilewidth" name="mobilewidth" class="number" value="861"/> x <input type="number" id="mobileheight" name="mobileheight" class="number" value="329"/> px</td>
+        <td><input type="number" id="mobilewidth" name="mobilewidth" class="number" value="861"/> x <input type="number" id="mobileheight" name="mobileheight" class="number" value="329"/></td>
+    </tr>
+    <tr>
+      <th><label for="showtextbox">Hide All the Text Boxes for the mobile View</label></th>
+      <td><input type="checkbox" id="showtextbox" name="showtextbox" value="1" /></td>
     </tr>
   </table>
   <h3 class="heading">Options for the 1<sup>st</sup> Slide <span class="note">You can choose a custom background color, or have the image repeated infinitely</span></h3>
