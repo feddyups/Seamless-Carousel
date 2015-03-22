@@ -5,10 +5,15 @@
 
 //add before generic wrapper
 {% if template == 'index' %}
-  {% include 'slider' %}
+	{% include 'slider' %}
 {% endif %}
 
 //add before body end
 {% if template == 'index' %}
-  {% include 'jquery_seamless_carousel' %}
+	<script>
+	// Picture element HTML5 shiv, useful if modernizer is not deployed.
+	document.createElement( "picture" );
+	</script>
+	<script src="{{ 'picturefill.min.js' | asset_url }}" async></script>
+  	{% include 'jquery_seamless_carousel' %}
 {% endif %}
