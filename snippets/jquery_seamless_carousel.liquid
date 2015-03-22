@@ -62,6 +62,7 @@ function debounce(func, wait, immediate) {
               repeating_value   = $(slides[i]).find('a').data('repeat'),
               dataSmallScreen   = $(slides[i]).find('a').data('smallscreen'),
               repeating_bgcolor = $(slides[i]).find('a').attr("data-bgcolor");
+
           if (dataSmallScreen) {
             $(slides[i]).addClass("withMobileImg");
           }
@@ -120,9 +121,10 @@ function debounce(func, wait, immediate) {
         clearTimeout(timer);
         is_animating = true;
         var image_src = $(slides[$key]).find('img').prop('src');
-        /*if(image_src === undefined){
-          image_src = $(slides[$key]).find('img').attr('src');
-        }*/
+        //Make Sure Chrome and webkit picks up the value
+        if (image_src !== undefined && image_src !== false) {
+          image_src = $(slides[$key]).find('img').attr('srcset');
+        }
         var repeating_value = $(slides[$key]).find('a').data('repeat');
         var dataSmallScreen = $(slides[$key]).find('a').data('smallscreen');
         var repeating_bgcolor = $(slides[$key]).find('a').attr("data-bgcolor");
