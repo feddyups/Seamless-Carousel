@@ -86,8 +86,10 @@ function debounce(func, wait, immediate) {
         $(self).append('<div class="loading-bar"></div>');
       
       // events
-      $(self).find('.menu .next a').bind('click', next);
-      $(self).find('.menu .prev a').bind('click', prev);
+      {% if settings.slider_showprevnext %}
+      $(self).find('.menu .next span').bind('click', next);
+      $(self).find('.menu .prev span').bind('click', prev);
+      {% endif %}
       $(self).find('.pagination a').bind('click', jump);
       $(self).find('.mobile-pagination a').bind('click', jump);
       // show
@@ -369,8 +371,10 @@ function debounce(func, wait, immediate) {
 var Initiated = function(){
   var dataShowPagination      = $('#home_feature_images').data("showpagination"),
       dataThumbPagination     = $('#home_feature_images').data("showthumbnails"),
+      dataPrevNextPagination  = $('#home_feature_images').data("showprevnext"),
       theImgWidth             = $('#home_feature').data("normalwidth"),
       theMobileImgWidth       = $('#home_feature').data("mobilewidth"),
+      thelength               = $('#home_feature_images a').length;
       home_slides             = '',
       thumb_render            = '',
       next_prev_render        = '',
@@ -381,6 +385,8 @@ var Initiated = function(){
       img_480                 = 'large',
       img_240                 = 'medium';
       img_50                  = 'thumb';
+
+
   
   $('#home_feature_images a').each(function (index) {
     var self                  = this,
@@ -413,7 +419,8 @@ var Initiated = function(){
         newdataSmallSrc_600   = '',
         newdataSmallSrc_480   = '',
         newdataSmallSrc_240   = '';
-        newdataSmallSrc_50   = '';
+        newdataSmallSrc_50    = '';
+
 
     /*Shopify says 
     medium Returns the image at a maximum size of 240 by 240 pixels.
@@ -489,10 +496,9 @@ var Initiated = function(){
 
       additionalimageSet = '<source';
       additionalimageSet += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w" />';
-
     }
                              
-    home_slides += '<div>'
+    home_slides += '<div class="slideheld">'
     home_slides += '<div>';
     home_slides += '<a class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition + '" href="' + $(self).attr("href") + '">';
     home_slides += '<div class="textoverlay '+dataAlignment+' '+showfordsktp+' '+showformobile+' '+dataBoxStyle+'">';
@@ -536,9 +542,6 @@ var Initiated = function(){
         thumb_render += '<span>/</span>';
         thumb_render += '</li>';
       }
-
-      
-
       mobile_next_prev_render += '<li><a>&bull;</a></li>';
     }
                  
@@ -553,10 +556,14 @@ var Initiated = function(){
   if (dataShowPagination) {
     full_render +='<div class="paginationwrap">';
     //next/previous
-    full_render +='<ul class="menu">';
-    full_render +='<li class="prev"><a></a></li>';
-    full_render +='<li class="next"><a></a></li>';
-    full_render +='</ul>';
+    if (dataPrevNextPagination) {
+      if (thelength > 1) {
+        full_render +='<ul class="menu">';
+        full_render +='<li class="prev"><span></span></li>';
+        full_render +='<li class="next"><span></span></li>';
+        full_render +='</ul>';
+      }
+    }
     //thumbnails
     if (dataThumbPagination) {
       full_render +='<ul class="thumb_pagination">';
@@ -582,5 +589,6 @@ var Initiated = function(){
         useTimer: {{ settings.slider_autoPlay }}
   });
 };
+
 if ($('#home_feature_images a').length > 0) {$(document).ready(function () {Initiated();});}
 </script>

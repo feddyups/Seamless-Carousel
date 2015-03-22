@@ -38,23 +38,49 @@
     }
   }
   .menu {
-    float: right;
-    margin: 5px 10px;
+    height: 100%;
+    width: 100%;
     li {
-      display: inline;
-      margin-left: 8px;
-    }
-    .next a,.prev a {
-      border-bottom: 6px solid transparent;
-      border-top: 6px solid transparent;
-      cursor: pointer;
+      box-sizing:border-box;
+      -moz-box-sizing:border-box;
       display: inline-block;
-      height: 0;
-      width: 0;
-      &:hover{}    
-      .next a {border-left: 6px solid #ccc;}
-      .prev a {border-right: 6px solid #ccc;}
+      height: 100%;
+      position: relative;
+      width: 50%;
+      
+      span {
+        background: url("{{ 'seamless_carousel_menu_nav.svg' | asset_url }}") no-repeat;
+        cursor: pointer;
+        display: inline-block;
+        height: 100%;
+        position: relative;
+        width: 56px;
+        z-index: 2;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s ease;
+        -moz-transition: opacity 0.3s ease;
+        -o-transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease;
+        &:hover {
+          opacity: 1;
+        }
+      }
+      
     }
+    .prev {
+        padding-left: 10px;
+        span{
+          background-position: left center !important;
+          float: left;
+        }
+      }
+      .next {
+        padding-right: 10px;
+        span{
+          background-position: right center !important;
+          float: right;
+        }
+      }
   }
   ul.mobile-pagination {
 	  display: none;
@@ -252,25 +278,20 @@
   }
 
 
-/*Control the views of the images for mobile or not*/
-@media all and (min-width: 1480px) {
-  .paginationwrap {
-    width: 1440px;
+
+
+.paginationwrap {
+    display: inline-block;
+    height: 100%;
+    left: 0;
     margin: 0 auto;
-  }
+    position: absolute;
+    right: 0;
+    top: 0;
 }
-@media all and (max-width: 1240px) {
-  .paginationwrap {
-    width: 960px;
-    margin: 0 auto;
-  }
-}
+
 @media all and (max-width: 980px) and (min-width: 0) {
-  .paginationwrap {
-    min-width: 320px;
-    width: 100%;
-    margin: 0 auto;
-  }
+
 
   #home-carousel ul.pagination {
     display:none;

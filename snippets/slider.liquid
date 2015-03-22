@@ -15,6 +15,7 @@
       id="home_feature_images" 
       data-showpagination="{{ settings.showpagination }}"
       data-showthumbnails="{{ settings.slider_showthumbnails }}"
+      data-showprevnext="{{ settings.slider_showprevnext }}"
     >
     {% for i in (0..loop) %}
       {% capture alignment %}slide{{ slides[i] }}_box_alignment{% endcapture %}
