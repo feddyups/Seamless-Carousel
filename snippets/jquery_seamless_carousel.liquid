@@ -58,11 +58,10 @@ function debounce(func, wait, immediate) {
       // set tiling background-images on homepage, or set background color
       
         for (var i = 0; i < slides.length; i++) {
-          var image_src         = $(slides[i]).find('img').prop('src'),
+          var image_src         = $(slides[i]).find('img').attr('srcset'),
               repeating_value   = $(slides[i]).find('a').data('repeat'),
               dataSmallScreen   = $(slides[i]).find('a').data('smallscreen'),
               repeating_bgcolor = $(slides[i]).find('a').attr("data-bgcolor");
-          
           if (dataSmallScreen) {
             $(slides[i]).addClass("withMobileImg");
           }
@@ -120,48 +119,46 @@ function debounce(func, wait, immediate) {
       if (!is_animating && current_slide !== $key) {
         clearTimeout(timer);
         is_animating = true;
-       
-          var image_src = $(slides[$key]).find('img').data('src');
-          /*if(image_src === undefined){
-            image_src = $(slides[$key]).find('img').attr('src');
-          }*/
-          var repeating_value = $(slides[$key]).find('a').data('repeat');
-          var dataSmallScreen = $(slides[$key]).find('a').data('smallscreen');
-          var repeating_bgcolor = $(slides[$key]).find('a').attr("data-bgcolor");
+        var image_src = $(slides[$key]).find('img').prop('src');
+        /*if(image_src === undefined){
+          image_src = $(slides[$key]).find('img').attr('src');
+        }*/
+        var repeating_value = $(slides[$key]).find('a').data('repeat');
+        var dataSmallScreen = $(slides[$key]).find('a').data('smallscreen');
+        var repeating_bgcolor = $(slides[$key]).find('a').attr("data-bgcolor");
 
-          if (dataSmallScreen) {
-            $(slides[$key]).addClass("withMobileImg");
-          }
-          else{
-            $(slides[$key]).addClass("withoutMobileImg");
-          }
-          if (image_src !== undefined && image_src !== false) {
-            var image = new Image();
-            preloaderStart();
-            image.onload = function () {
-              $(slides[$key]).find('img').prop('src', image_src).data('src', false);
-              if ((repeating_bgcolor !== undefined) && (!repeating_value)) {
-                //console.log('For further indexing');  
-                $(slides[$key]).css({
-                  'background-color': repeating_bgcolor + ''
-                });
-              }
-              //Repeating Value Overrides the bgcolor set at all times
-              if (repeating_value) {
-                $(slides[$key]).css({
-                  'background-image': 'url(' + image_src + ')',
-                  'background-position': 'center',
-                  'background-repeat': 'repeat-x'
-                });
-                $(slides[$key]).addClass("removebgformobiles");
-              }
-              animateInSlide($key);
-              preloaderDone();
+        if (dataSmallScreen) {
+          $(slides[$key]).addClass("withMobileImg");
+        }
+        else{
+          $(slides[$key]).addClass("withoutMobileImg");
+        }
+        if (image_src !== undefined && image_src !== false) {
+          var image = new Image();
+          preloaderStart();
+          image.onload = function () {
+            $(slides[$key]).find('img').prop('src', image_src).data('src', false);
+            if ((repeating_bgcolor !== undefined) && (!repeating_value)) {
+              //console.log('For further indexing');  
+              $(slides[$key]).css({
+                'background-color': repeating_bgcolor + ''
+              });
             }
-            image.src = image_src;
-            return;
+            //Repeating Value Overrides the bgcolor set at all times
+            if (repeating_value) {
+              $(slides[$key]).css({
+                'background-image': 'url(' + image_src + ')',
+                'background-position': 'center',
+                'background-repeat': 'repeat-x'
+              });
+              $(slides[$key]).addClass("removebgformobiles");
+            }
+            animateInSlide($key);
+            preloaderDone();
           }
-       
+          image.src = image_src;
+          return;
+        }
         animateInSlide($key);
       }
     }
@@ -392,7 +389,7 @@ var Initiated = function(){
         dataShowTextBox       = $(self).data("showformobile"),
         dataShowForDesktop    = $(self).data("showfordesktop"),
         dataPrompt            = $(self).data("prompt"),
-        dataSrc               = $(self).find('img').attr("src"),
+        dataSrc               = $(self).find('img').data("srcstring"),
         dataAlt               = $(self).find('img').attr("alt"),
         dataRepetition        = $(self).data("repeat"),
         dataSmallScreen       = $(self).data("smallscreen"),
@@ -465,7 +462,6 @@ var Initiated = function(){
     } 
 
     if (dataBgColor.length === 0) {
-      console.log('undefined dataBgColor'+dataBgColor);
       dataBgColor='undefined';
     }
 
@@ -485,15 +481,13 @@ var Initiated = function(){
       additionalimage += '<img';
       additionalimage += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w"';
       additionalimage += ' class="mobilescreen"';
-      additionalimage += ' src="'+dataSmallScreen+'"';
+      //additionalimage += ' src="'+dataSmallScreen+'"';
       additionalimage += ' alt="'+dataAlt+'" />';
       //console.log(additionalimageSet);
 
       additionalimageSet = '<source';
-      additionalimageSet += '<!--[if IE 9]><video style="display: none;"><![endif]-->';
       additionalimageSet += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w" />';
-      additionalimageSet += '<!--[if IE 9]></video><![endif]-->';
-    
+
     }
                              
     home_slides += '<div>'
@@ -511,15 +505,14 @@ var Initiated = function(){
     if (dataSmallScreen) {
     home_slides += ' media="(min-width: '+theMobileImgWidth+'px)"';
     }
-    home_slides += '<!--[if IE 9]><video style="display: none;"><![endif]-->';
-    home_slides += ' srcset="'+newdataSrc_1024+' 1024w,   '+newdataSrc_600+' 600w,   '+newdataSrc_480+' 480w,    '+newdataSrc_240+' 240w" />';
+    home_slides += ' srcset="'+dataSrc+' '+theImgWidth+'w, '+newdataSrc_1024+' 1024w,   '+newdataSrc_600+' 600w,   '+newdataSrc_480+' 480w,    '+newdataSrc_240+' 240w" />';
     if (dataSmallScreen) {
       home_slides +=  additionalimageSet;
     }
-    home_slides += '<!--[if IE 9]></video><![endif]-->';
     home_slides += '<img';
     home_slides += ' class="swapper '+smallscreenclass+'"';
-    home_slides += ' src="'+dataSrc+'"';
+    home_slides += ' srcset="'+dataSrc+'"';
+    //home_slides += ' src="'+dataSrc+'"';
     home_slides += ' alt="'+dataAlt+'" />';
     home_slides += '</picture>';
     if (dataSmallScreen) {
@@ -542,8 +535,7 @@ var Initiated = function(){
         thumb_render += '</li>';
       }
 
-      next_prev_render +='<li class="prev"><a></a></li>';
-      next_prev_render +='<li class="next"><a></a></li>';
+      
 
       mobile_next_prev_render += '<li><a>&bull;</a></li>';
     }
@@ -560,7 +552,8 @@ var Initiated = function(){
     full_render +='<div class="paginationwrap">';
     //next/previous
     full_render +='<ul class="menu">';
-    full_render += next_prev_render;
+    full_render +='<li class="prev"><a></a></li>';
+    full_render +='<li class="next"><a></a></li>';
     full_render +='</ul>';
     //thumbnails
     if (dataThumbPagination) {

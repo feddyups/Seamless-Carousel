@@ -45,7 +45,7 @@
         data-smallscreen="{% if settings[usesm] %}{{ slidesmall | asset_url }}{% else %}false{% endif %}" 
         href="{{ settings[link] }}">
         <img 
-          src="{{ slide | asset_url }}" 
+          data-srcstring="{{ slide | asset_url }}" 
           alt="{{ settings[alt] }}" 
         />
       </a>
