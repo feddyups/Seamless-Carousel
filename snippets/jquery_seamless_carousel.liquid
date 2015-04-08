@@ -2,7 +2,7 @@
 /*
 SUBJECT:    A nice little carousel, like when we we were kids v1.4
 RELEASED:   06.12.2013
-UPDATED:    21.03.2015
+UPDATED:    09.04.2015
 AUTHOR:     feddyups at Webatect Networks, on behalf of Tricky3 Web Mangling
 EMAIL:      feddyups@gmail.com, rick@tricky3.co.uk
 WEBSITE:    http://www.freelancer.com/u/feddyups.html
@@ -53,7 +53,7 @@ function debounce(func, wait, immediate) {
         slides.push(this);
       });
 
-      $(self).find('.pagination a:eq(0)').addClass('active');
+      $(self).find('.thumb_pagination a:eq(0)').addClass('active');
       $(self).find('.mobile-pagination a:eq(0)').addClass('active');
       // set tiling background-images on homepage, or set background color
       
@@ -90,7 +90,7 @@ function debounce(func, wait, immediate) {
       $(self).find('.menu .next span').bind('click', next);
       $(self).find('.menu .prev span').bind('click', prev);
       {% endif %}
-      $(self).find('.pagination a').bind('click', jump);
+      $(self).find('.thumb_pagination a').bind('click', jump);
       $(self).find('.mobile-pagination a').bind('click', jump);
       // show
       $(self).show();
@@ -168,10 +168,10 @@ function debounce(func, wait, immediate) {
     }
 
     function animateInSlide($key) {
-      $(self).find('.pagination a.active').each(function () {
+      $(self).find('.thumb_pagination a.active').each(function () {
         $(this).removeClass('active');
       });
-      $(self).find('.pagination a:eq(' + $key + ')').each(function () {
+      $(self).find('.thumb_pagination a:eq(' + $key + ')').each(function () {
         $(this).addClass('active');
       });
       $(self).find('.mobile-pagination a.active').each(function () {
@@ -209,7 +209,7 @@ function debounce(func, wait, immediate) {
     }
     // Click Events
     function jump() {
-      var index = $(self).find('.pagination a').index(this);
+      var index = $(self).find('.thumb_pagination a').index(this);
       index = (index < 0) ? $(self).find('.mobile-pagination a').index(this) : index;
       if (index > -1) {
         changeSlide(index);
@@ -539,7 +539,6 @@ var Initiated = function(){
         thumb_render += ' src="'+newdataSrc_50+'"';
         thumb_render += ' alt="'+dataAlt+'" /> ';
         thumb_render += '</a>';
-        thumb_render += '<span>/</span>';
         thumb_render += '</li>';
       }
       mobile_next_prev_render += '<li><a>&bull;</a></li>';
