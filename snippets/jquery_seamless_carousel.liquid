@@ -55,6 +55,11 @@ function debounce(func, wait, immediate) {
 
       $(self).find('.thumb_pagination a:eq(0)').addClass('active');
       $(self).find('.mobile-pagination a:eq(0)').addClass('active');
+      {% unless settings.slider_hidetextbox %}
+        {% if settings.slider_showtextbelow %}
+          $('#mobile_content').find('.textoverlay:eq(0)').addClass('active');
+        {% endif %}
+      {% endunless %}
       // set tiling background-images on homepage, or set background color
       
         for (var i = 0; i < slides.length; i++) {
@@ -70,9 +75,8 @@ function debounce(func, wait, immediate) {
             $(slides[i]).addClass("withoutMobileImg");
           }
           if ((!repeating_value) && (repeating_bgcolor !== undefined)) {
-            $(slides[i]).css({
-              'background-color': repeating_bgcolor + ''
-            });
+            $(slides[i]).css({'background-color': repeating_bgcolor + ''});
+            $('#mobile_content').find('.textoverlay:eq('+i+')').css({'background-color': repeating_bgcolor + ''});
           }
           if ((image_src !== undefined) && (repeating_value)) {
             $(slides[i]).css({
@@ -144,9 +148,8 @@ function debounce(func, wait, immediate) {
             $(slides[$key]).find('img').prop('src', image_src).data('src', false);
             if ((repeating_bgcolor !== undefined) && (!repeating_value)) {
               //console.log('For further indexing');  
-              $(slides[$key]).css({
-                'background-color': repeating_bgcolor + ''
-              });
+              $(slides[$key]).css({'background-color': repeating_bgcolor + ''});
+              $('#mobile_content').find('.textoverlay:eq('+$key+')').css({'background-color': repeating_bgcolor + ''});
             }
             //Repeating Value Overrides the bgcolor set at all times
             if (repeating_value) {
@@ -180,6 +183,19 @@ function debounce(func, wait, immediate) {
       $(self).find('.mobile-pagination a:eq(' + $key + ')').each(function () {
         $(this).addClass('active');
       });
+      {% unless settings.slider_hidetextbox %}
+        {% if settings.slider_showtextbelow %}
+      $('#mobile_content').find('.textoverlay.active').each(function () {
+        $(this).removeClass('active');
+      });
+      $('#mobile_content').find('.textoverlay:eq(' + $key + ')').each(function () {
+        $(this).addClass('active');
+      });
+        {% endif %}
+      {% endunless %}
+
+
+      
       for (var i = 0; i < slides.length; i++) {
         if (i === $key) {
           $(slides[i]).fadeIn({
@@ -369,22 +385,24 @@ function debounce(func, wait, immediate) {
    
 // Get Set, let's go 
 var Initiated = function(){
-  var dataShowPagination      = $('#home_feature_images').data("showpagination"),
-      dataThumbPagination     = $('#home_feature_images').data("showthumbnails"),
-      dataPrevNextPagination  = $('#home_feature_images').data("showprevnext"),
-      theImgWidth             = $('#home_feature').data("normalwidth"),
-      theMobileImgWidth       = $('#home_feature').data("mobilewidth"),
-      thelength               = $('#home_feature_images a').length;
-      home_slides             = '',
-      thumb_render            = '',
-      next_prev_render        = '',
-      mobile_next_prev_render = '',
-      full_render             = '',
-      img_1024                = '1024x1024',
-      img_600                 = 'grande',
-      img_480                 = 'large',
-      img_240                 = 'medium';
-      img_50                  = 'thumb';
+  var dataShowPagination            = $('#home_feature_images').data("showpagination"),
+      dataThumbPagination           = $('#home_feature_images').data("showthumbnails"),
+      dataPrevNextPagination        = $('#home_feature_images').data("showprevnext"),
+      theImgWidth                   = $('#home_feature').data("normalwidth"),
+      theMobileImgWidth             = $('#home_feature').data("mobilewidth"),
+      thelength                     = $('#home_feature_images a').length;
+      home_slides                   = '',
+      thumb_render                  = '',
+      next_prev_render              = '',
+      mobile_next_prev_render       = '',
+      full_render                   = '',
+      mobile_content                = '',
+      mobile_content_for_each_slide = '',
+      img_1024                      = '1024x1024',
+      img_600                       = 'grande',
+      img_480                       = 'large',
+      img_240                       = 'medium';
+      img_50                        = 'thumb';
 
 
   
@@ -394,20 +412,18 @@ var Initiated = function(){
         dataLead              = $(self).data("lead"),
         dataAlignment         = $(self).data("alignment"),
         dataBoxStyle          = $(self).data("style"),
-        dataShowTextBox       = $(self).data("showformobile"),
-        dataShowForDesktop    = $(self).data("showfordesktop"),
         dataPrompt            = $(self).data("prompt"),
+        dataPromptLink        = $(self).data("promptlink"),
         dataSrc               = $(self).find('img').data("srcstring"),
         dataAlt               = $(self).find('img').attr("alt"),
         dataRepetition        = $(self).data("repeat"),
         dataSmallScreen       = $(self).data("smallscreen"),
         dataBgColor           = $(self).data("bgcolor"),
+        dataLink              = $(self).attr("href"),
         headline_html         = '',
-        prompt_html           = '',
         smallscreenclass      = 'no-mobile-img-set',
-        showformobile         = 'centerformobile',
         divsmallscreenclass   = 'smalldisablediv',
-        showfordsktp          = '',
+        mobileTextDisplay     = 'showformobile';
         additionalimage       = '',
         additionalimageSet    = '',
         newdataSrc_1024       = '',
@@ -446,12 +462,9 @@ var Initiated = function(){
     }
 
     if (dataHeadline) {
-      headline_html = '<div class="framed">'+dataHeadline+'</div>';
+      headline_html = '<div class="headline">'+dataHeadline+'</div>';
     }
     
-    if (dataPrompt) {
-      prompt_html = '<span class="leftspanned inthelink">&lt;</span>'+dataPrompt+'<span class="rightspanned inthelink">&gt;</span>';
-    } 
     //Make sure the User has not accidentally chosen "Use this for Mobile" through the settings, but still hasn't loaded any mobile image
     if (dataSmallScreen) {
       $.get(dataSmallScreen)
@@ -462,13 +475,9 @@ var Initiated = function(){
         })
     }
     
-    if (dataShowTextBox) {
-      showformobile='hideformobile';
-    } 
-
-    if (dataShowForDesktop) {
-      showfordsktp='hideoverlay';
-    } 
+    {% if settings.slider_hidetextbox or settings.slider_showtextbelow %}
+      mobileTextDisplay='hideformobile';
+    {% endif %}
 
     if (dataBgColor.length === 0) {
       dataBgColor='undefined';
@@ -497,15 +506,34 @@ var Initiated = function(){
       additionalimageSet = '<source';
       additionalimageSet += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w" />';
     }
+
+    if (dataLink) {
+      console.log('dataLink is' +dataLink);
+    }
+    else{
+      console.log('no dataLink');
+    }
                              
     home_slides += '<div class="slideheld">'
     home_slides += '<div>';
-    home_slides += '<a class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition + '" href="' + $(self).attr("href") + '">';
-    home_slides += '<div class="textoverlay '+dataAlignment+' '+showfordsktp+' '+showformobile+' '+dataBoxStyle+'">';
+    if (dataLink && !dataPromptLink) {
+    home_slides += '<a class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition + '" href="' + dataLink + '" title="'+dataAlt+'">';
+    }
+    else{
+    home_slides += '<section class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition +'">';
+    }
+    home_slides += '<div class="textoverlay '+dataAlignment+' '+mobileTextDisplay+' '+dataBoxStyle+'">';
     home_slides += '<div class="encircle">';
     home_slides += '<div class="tightwidth">' + headline_html ;
-    home_slides += '<div class="unframed">'+dataLead+'</div>';
-    home_slides += '<div class="linkprompt">'+prompt_html+'</div>';
+    home_slides += '<div class="lead">'+dataLead+'</div>';
+    if (dataPrompt) {
+      if (dataPromptLink) {
+        home_slides += '<a class="linkprompt" href="'+dataPromptLink+'">'+dataPrompt+'</a>';
+      }
+      else{
+        home_slides += '<div class="linkprompt">'+dataPrompt+'</div>';
+      }
+    }
     home_slides += '</div></div></div>';
     //only load the desktop img when the viewport is wider than theMobileImgWidth. On smaller viewports, always load the mobile equivalents, if they exist.
     home_slides += '<picture>';
@@ -526,7 +554,12 @@ var Initiated = function(){
     if (dataSmallScreen) {
       home_slides += additionalimage;
     }
+    if (dataLink && !dataPromptLink) {
     home_slides += '</a>';
+    }
+    else{
+    home_slides += '</section>';  
+    }
     home_slides += '</div>'
     home_slides += '</div>';
 
@@ -543,9 +576,27 @@ var Initiated = function(){
       }
       mobile_next_prev_render += '<li><a>&bull;</a></li>';
     }
-                 
+
+    {% unless settings.slider_hidetextbox %}
+      {% if settings.slider_showtextbelow %}
+        mobile_content_for_each_slide += '<div class="textoverlay '+dataAlignment+' '+dataBoxStyle+'">';
+        mobile_content_for_each_slide += '<div class="encircle">';
+        mobile_content_for_each_slide += '<div class="tightwidth">' + headline_html ;
+        mobile_content_for_each_slide += '<div class="lead">'+dataLead+'</div>';
+        if (dataPrompt) {
+          if (dataPromptLink) {
+            mobile_content_for_each_slide += '<a class="linkprompt" href="'+dataPromptLink+'">'+dataPrompt+'</a>';
+          }
+          else{
+            mobile_content_for_each_slide += '<div class="linkprompt">'+dataPrompt+'</div>';
+          }
+        }
+        mobile_content_for_each_slide += '</div></div></div>';
+      {% endif %}
+    {% endunless %}
     
   });
+
   $('#home_feature_images').remove();
   $( "#home_feature" ).fadeTo( "fast" , 1, function() {});
 
@@ -578,7 +629,14 @@ var Initiated = function(){
   }
   full_render +='</div>';
 
+  {% unless settings.slider_hidetextbox %}
+    {% if settings.slider_showtextbelow %}
+      mobile_content += '<div id="mobile_content">'+mobile_content_for_each_slide+'</div>';
+    {% endif %}
+  {% endunless %}
+
   $('#home_feature').prepend(full_render);
+  $('#home_feature').append(mobile_content);
   
   // Initiate carousel
   $('#home-carousel').carousel({

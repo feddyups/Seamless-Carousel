@@ -1,6 +1,7 @@
 <fieldset>
   <legend>Homepage Slideshow</legend>
-  <h3 class="heading">General Options </h3><p class="note">The following will affect visual aspects of the slideshow, e.g. Slides' order, animation time and general background color. </p>
+  <h3 class="heading">General Options </h3>
+  <p class="note">The following will affect visual aspects of the slideshow, e.g. Slides' order, animation time and general background color. </p>
   <table>
     <tr>
       <th><label for="viewport_bg">Viewport Background</label></th>
@@ -47,25 +48,297 @@
       <td><input type="checkbox" id="slider_showprevnext" name="slider_showprevnext" value="1" /></td>
     </tr>
   </table>
+
   <table>
-    <h3 class="heading">Image &amp; Content Options </h3>
+    <h3 class="heading">Slider Proportions -  Art Direction </h3>
     <p class="note">Slider may take up to two versions of each image - one for desktop and one for mobile view</p>
-    <p class="note">Leave the text fields empty if you want just an image slide (without content)</p>
-    <tr>
-        <th><label for="normalwidth">Desktop View : Width x Height (expressed in px) </label></th>
+        <th><label for="normalwidth">Desktop View : Width x Height (maximum values, expressed in px) </label></th>
         <td><input type="number" id="normalwidth" name="normalwidth" class="number" value="1850"/> x <input type="number" id="normalheight" name="normalheight" class="number" value="706"/></td>
-    </tr>
     <tr>
-        <th><label for="mobilewidth">Mobile View : Width x Height (expressed in px)  </label>
-          <p class="note">make sure it is the same aspect ratio with the Desktop Image</p>
+        <th><label for="mobilewidth">Mobile View : Width x Height (maximum values, expressed in px)  </label>
         </th>
         <td><input type="number" id="mobilewidth" name="mobilewidth" class="number" value="861"/> x <input type="number" id="mobileheight" name="mobileheight" class="number" value="329"/></td>
     </tr>
+  </table>
+
+  <table>
+    <h3 class="heading">Content Typography</h3>
+    <p class="note">Choose up to three different font-families</p>
+  <tr>
+      <th><label for="slider_headline_font">Headline Font Family</label></th>
+      <td>
+        <input type="text" id="slider_headline_font" name="slider_headline_font" class="text" value="'Times New Roman',serif" />
+      </td>
+    </tr>
     <tr>
-      <th><label for="showtextbox">Hide All the Text Boxes for the mobile View</label></th>
-      <td><input type="checkbox" id="showtextbox" name="showtextbox" value="1" /></td>
+      <th><label for="slider_lead_font">Lead Font Family</label></th>
+      <td>
+        <input type="text" id="slider_lead_font" name="slider_lead_font" class="text" value="Arial,sans-serif" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_cta_font">CTA Font Family</label></th>
+      <td>
+        <input type="text" id="slider_cta_font" name="slider_cta_font" class="text" value="Arial,sans-serif" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_font_observer">Slider is using Web fonts</label></th>
+      <td><input type="checkbox" id="slider_font_observer" name="slider_font_observer" value="1" /></td>
+    </tr>
+    </table>
+
+    <table>  
+    <h3 class="heading">Theme Colors</h3>
+    <p class="note">Create up to two distinct styles for your Content, a Light and a Dark theme, then assign the most appropriable one to each of your Slides</p>
+    <h3 class="heading">Light theme Options</h3>
+    <tr>
+        <th><label for="slider_headline_style1_color">Headline Text Color</label></th>
+        <td><input type="text" id="slider_headline_style1_color" name="slider_headline_style1_color" class="color" value="#FFFFFF"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_lead_style1_color">Lead Text Color</label></th>
+        <td><input type="text" id="slider_lead_style1_color" name="slider_lead_style1_color" class="color" value="#FFFFFF"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_cta_style1_color">CTA Text Color</label></th>
+        <td><input type="text" id="slider_cta_style1_color" name="slider_cta_style1_color" class="color" value="#FFFFFF"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_cta_link_style1_color">CTA Link Color</label></th>
+        <td><input type="text" id="slider_cta_link_style1_color" name="slider_cta_link_style1_color" class="color" value="#FFFFFF"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_cta_style1_txt_shadow">Text shadow color</label></th>
+        <td><input type="text" id="slider_cta_style1_txt_shadow" name="slider_cta_style1_txt_shadow" class="color" value="#000000"/></td>
+    </tr>
+    </table>
+    <table>
+    <h3 class="heading">Dark theme Options</h3>
+    <tr>
+        <th><label for="slider_headline_style2_color">Headline Text Color</label></th>
+        <td><input type="text" id="slider_headline_style2_color" name="slider_headline_style2_color" class="color" value="#000000"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_lead_style2_color">Lead Text Color</label></th>
+        <td><input type="text" id="slider_lead_style2_color" name="slider_lead_style2_color" class="color" value="#000000"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_cta_style2_color">CTA Text Color</label></th>
+        <td><input type="text" id="slider_cta_style2_color" name="slider_cta_style2_color" class="color" value="#000000"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_cta_link_style2_color">CTA Link Color</label></th>
+        <td><input type="text" id="slider_cta_link_style2_color" name="slider_cta_link_style2_color" class="color" value="#000000"/></td>
+    </tr>
+    <tr>
+        <th><label for="slider_cta_style2_txt_shadow">Text shadow color</label></th>
+        <td><input type="text" id="slider_cta_style2_txt_shadow" name="slider_cta_style2_txt_shadow" class="color" value="#FFFFFF"/></td>
+    </tr>
+
+  </table>
+
+  <table>
+    <h3 class="heading">Content Offset for Desktop View</h3>
+    <p class="note">Define the Content's offset for the Desktop View</p>
+     <tr>
+        <th><label for="slider_left_txt_offset">Distance of the Content from the left side</label>
+        </th>
+        <td><input type="number" id="slider_left_txt_offset" name="slider_left_txt_offset" class="number" value="20%"/></td>
+    </tr>
+        <tr>
+        <th><label for="slider_right_txt_offset">Distance of the Content from the right side</label>
+        </th>
+        <td><input type="number" id="slider_right_txt_offset" name="slider_right_txt_offset" class="number" value="20%"/></td>
+    </tr>
+        <tr>
+        <th><label for="slider_top_txt_offset">Distance of the Content from the Top side</label>
+        </th>
+        <td><input type="number" id="slider_top_txt_offset" name="slider_top_txt_offset" class="number" value="20%"/></td>
+    </tr>
+        <tr>
+        <th><label for="slider_bottom_txt_offset">Distance of the Content from the Bottom side</label>
+        </th>
+        <td><input type="number" id="slider_bottom_txt_offset" name="slider_bottom_txt_offset" class="number" value="20%"/></td>
     </tr>
   </table>
+
+  <table>
+    <h3 class="heading">Content Styling for Desktop View</h3>
+    <p class="note">Configure how the Headline, the Lead and the CTA content should look like on the Desktop View.</p>
+    <tr>
+      <th><label for="slider_headline_frame">Show Headline within Frame</label></th>
+      <td><input type="checkbox" id="slider_headline_frame" name="slider_headline_frame" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_headline_frame_width">Headline Border Width </label></th>
+      <td>
+        <input type="text" id="slider_headline_frame_width" name="slider_headline_frame_width" class="text" value="2px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_headline_textsize">Headline Text Size</label></th>
+      <td>
+        <input type="text" id="slider_headline_textsize" name="slider_headline_textsize" class="text" value="33px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_headline_line_height">Headline Line Height</label></th>
+      <td>
+        <input type="text" id="slider_headline_line_height" name="slider_headline_line_height" class="text" value="33px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_headline_padding">Headline Padding</label></th>
+      <td>
+        <input type="text" id="slider_headline_padding" name="slider_headline_padding" class="text" value="0 66px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_lead_frame">Show Lead within frame</label></th>
+      <td><input type="checkbox" id="slider_lead_frame" name="slider_lead_frame" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_lead_frame_width">Lead Border Width</label></th>
+      <td>
+        <input type="text" id="slider_lead_frame_width" name="slider_lead_frame_width" class="text" value="2px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_lead_textsize">Lead Text Size</label></th>
+      <td>
+        <input type="text" id="slider_lead_textsize" name="slider_lead_textsize" class="text" value="18px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_lead_line_height">Lead Line Height</label></th>
+      <td>
+        <input type="text" id="slider_lead_line_height" name="slider_lead_line_height" class="text" value="18px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_cta_frame">Show CTA within frame</label></th>
+      <td><input type="checkbox" id="slider_cta_frame" name="slider_cta_frame" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_cta_frame_width">CTA Border Width</label></th>
+      <td>
+        <input type="text" id="slider_cta_frame_width" name="slider_cta_frame_width" class="text" value="2px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_cta_textsize">CTA Text Size</label></th>
+      <td>
+        <input type="text" id="slider_cta_textsize" name="slider_cta_textsize" class="text" value="14px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_cta_line_height">CTA Line Height</label></th>
+      <td>
+        <input type="text" id="slider_cta_line_height" name="slider_cta_line_height" class="text" value="14px" />
+      </td>
+    </tr>
+  </table>
+
+  <table>
+    <h3 class="heading">Content Options for Mobile View</h3>
+    <p class="note">Options that will affect the content of all Slides, when on Mobile View</p>
+    <tr>
+      <th><label for="slider_hidetextbox">Hide all Text Content for the mobile View</label></th>
+      <td><input type="checkbox" id="slider_hidetextbox" name="slider_hidetextbox" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_showtextbelow">Display all Text Content Below the Slider for the mobile View</label></th>
+      <td><input type="checkbox" id="slider_showtextbelow" name="slider_showtextbelow" value="1" /></td>
+    </tr>
+    <tr>
+        <th><label for="slider_mobile_txt_padding">Padding for Mobile Content</label>
+        </th>
+        <td><input type="text" id="slider_mobile_txt_padding" name="slider_mobile_txt_padding" value="10px 0"/></td>
+    </tr>
+  </table>
+
+    <table>
+    <h3 class="heading">Content Styling for Mobile View</h3>
+    <p class="note">Configure how the Headline, the Lead and the CTA content should look like for the Mobile Screens.</p>
+    <tr>
+      <th><label for="slider_mobile_headline_frame">Show Headline within Frame</label></th>
+      <td><input type="checkbox" id="slider_mobile_headline_frame" name="slider_mobile_headline_frame" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_headline_frame_width">Headline Border Width </label></th>
+      <td>
+        <input type="text" id="slider_mobile_headline_frame_width" name="slider_mobile_headline_frame_width" class="text" value="1px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_headline_textsize">Headline Text Size</label></th>
+      <td>
+        <input type="text" id="slider_mobile_headline_textsize" name="slider_mobile_headline_textsize" class="text" value="1.4rem" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_headline_mobile_line_height">Headline Line Height</label></th>
+      <td>
+        <input type="text" id="slider_headline_mobile_line_height" name="slider_headline_mobile_line_height" class="text" value="auto" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_headline_padding">Headline Padding</label></th>
+      <td>
+        <input type="text" id="slider_mobile_headline_padding" name="slider_mobile_headline_padding" class="text" value="0 12px" />
+      </td>
+    </tr>
+    
+    <tr>
+      <th><label for="slider_mobile_lead_frame">Show Lead within frame</label></th>
+      <td><input type="checkbox" id="slider_mobile_lead_frame" name="slider_mobile_lead_frame" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_lead_frame_width">Lead Border Width</label></th>
+      <td>
+        <input type="text" id="slider_mobile_lead_frame_width" name="slider_mobile_lead_frame_width" class="text" value="1px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_lead_textsize">Lead Text Size</label></th>
+      <td>
+        <input type="text" id="slider_mobile_lead_textsize" name="slider_mobile_lead_textsize" class="text" value="1.1rem" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_lead_line_height">Lead Line Height</label></th>
+      <td>
+        <input type="text" id="slider_mobile_lead_line_height" name="slider_mobile_lead_line_height" class="text" value="auto" />
+      </td>
+    </tr>
+    
+    <tr>
+      <th><label for="slider_mobile_cta_frame">Show CTA within frame</label></th>
+      <td><input type="checkbox" id="slider_mobile_cta_frame" name="slider_mobile_cta_frame" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_cta_frame_width">CTA Border Width</label></th>
+      <td>
+        <input type="text" id="slider_mobile_cta_frame_width" name="slider_mobile_cta_frame_width" class="text" value="1px" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_cta_textsize">CTA Text Size</label></th>
+      <td>
+        <input type="text" id="slider_mobile_cta_textsize" name="slider_mobile_cta_textsize" class="text" value="1rem" />
+      </td>
+    </tr>
+    <tr>
+      <th><label for="slider_mobile_cta_line_height">CTA Line Height</label></th>
+      <td>
+        <input type="text" id="slider_mobile_cta_line_height" name="slider_mobile_cta_line_height" class="text" value="auto" />
+      </td>
+    </tr>
+  </table>
+
+
+  
   <h3 class="heading">Options for the 1<sup>st</sup> Slide <p class="note">You can choose a custom background color, or have the image repeated infinitely</p></h3>
   <div class="collapsed">
     <table>
@@ -93,16 +366,9 @@
         <td><input type="text" id="slide1_alt" name="slide1_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide1_link">Link to:</label></th>
+        <th><label for="slide1_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide1_link" name="slide1_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide1_showtextbox_full">Hide this Text Box </label></th>
-        <td><input type="checkbox" id="slide1_showtextbox_full" name="slide1_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide1_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide1_showtextbox" name="slide1_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide1_headline">Headline Text</label></th>
@@ -113,8 +379,12 @@
         <td><input type="text" id="slide1_lead" name="slide1_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide1_prompt">Prompt Text</label></th>
+        <th><label for="slide1_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide1_prompt" name="slide1_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide1_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide1_prompt_link" name="slide1_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide1_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -136,8 +406,8 @@
       <th><label for="slide1_box_style">Text Box Style</label></th>
       <td>
        <select name="slide1_box_style" id="slide1_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>     
@@ -169,16 +439,9 @@
         <td><input type="text" id="slide2_alt" name="slide2_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide2_link">Link to:</label></th>
+        <th><label for="slide2_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide2_link" name="slide2_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide2_showtextbox_full">Hide this Text Box </label></th>
-        <td><input type="checkbox" id="slide2_showtextbox_full" name="slide2_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide2_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide2_showtextbox" name="slide2_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide2_headline">Headline Text</label></th>
@@ -189,8 +452,12 @@
         <td><input type="text" id="slide2_lead" name="slide2_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide2_prompt">Prompt Text</label></th>
+        <th><label for="slide2_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide2_prompt" name="slide2_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide2_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide2_prompt_link" name="slide2_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide2_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -212,8 +479,8 @@
       <th><label for="slide2_box_style">Text Box Style</label></th>
       <td>
        <select name="slide2_box_style" id="slide2_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    
@@ -245,16 +512,9 @@
         <td><input type="text" id="slide3_alt" name="slide3_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide3_link">Link to:</label></th>
+        <th><label for="slide3_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide3_link" name="slide3_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide3_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide3_showtextbox_full" name="slide3_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide3_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide3_showtextbox" name="slide3_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide3_headline">Headline Text</label></th>
@@ -265,8 +525,12 @@
         <td><input type="text" id="slide3_lead" name="slide3_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide3_prompt">Prompt Text</label></th>
+        <th><label for="slide3_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide3_prompt" name="slide3_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide3_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide3_prompt_link" name="slide3_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide3_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -288,8 +552,8 @@
       <th><label for="slide3_box_style">Text Box Style</label></th>
       <td>
        <select name="slide3_box_style" id="slide3_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>   
@@ -322,16 +586,9 @@
         <td><input type="text" id="slide4_alt" name="slide4_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide4_link">Link to:</label></th>
+        <th><label for="slide4_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide4_link" name="slide4_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide4_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide4_showtextbox_full" name="slide4_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide4_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide4_showtextbox" name="slide4_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide4_headline">Headline Text</label></th>
@@ -342,8 +599,12 @@
         <td><input type="text" id="slide4_lead" name="slide4_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide4_prompt">Prompt Text</label></th>
+        <th><label for="slide4_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide4_prompt" name="slide4_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide4_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide4_prompt_link" name="slide4_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide4_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -365,8 +626,8 @@
       <th><label for="slide4_box_style">Text Box Style</label></th>
       <td>
        <select name="slide4_box_style" id="slide4_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr> 
@@ -398,16 +659,9 @@
         <td><input type="text" id="slide5_alt" name="slide5_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide5_link">Link to:</label></th>
+        <th><label for="slide5_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide5_link" name="slide5_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide5_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide5_showtextbox_full" name="slide5_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide5_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide5_showtextbox" name="slide5_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide5_headline">Headline Text</label></th>
@@ -418,8 +672,12 @@
         <td><input type="text" id="slide5_lead" name="slide5_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide5_prompt">Prompt Text</label></th>
+        <th><label for="slide5_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide5_prompt" name="slide5_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide5_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide5_prompt_link" name="slide5_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide5_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -441,8 +699,8 @@
       <th><label for="slide5_box_style">Text Box Style</label></th>
       <td>
        <select name="slide5_box_style" id="slide5_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    
@@ -474,16 +732,9 @@
         <td><input type="text" id="slide6_alt" name="slide6_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide6_link">Link to:</label></th>
+        <th><label for="slide6_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide6_link" name="slide6_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide6_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide6_showtextbox_full" name="slide6_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide6_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide6_showtextbox" name="slide6_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide6_headline">Headline Text</label></th>
@@ -494,8 +745,12 @@
         <td><input type="text" id="slide6_lead" name="slide6_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide6_prompt">Prompt Text</label></th>
+        <th><label for="slide6_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide6_prompt" name="slide6_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide6_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide6_prompt_link" name="slide6_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide6_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -517,8 +772,8 @@
       <th><label for="slide6_box_style">Text Box Style</label></th>
       <td>
        <select name="slide6_box_style" id="slide6_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    
@@ -550,16 +805,9 @@
         <td><input type="text" id="slide7_alt" name="slide7_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide7_link">Link to:</label></th>
+        <th><label for="slide7_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide7_link" name="slide7_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide7_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide7_showtextbox_full" name="slide7_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide7_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide7_showtextbox" name="slide7_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide7_headline">Headline Text</label></th>
@@ -570,8 +818,12 @@
         <td><input type="text" id="slide7_lead" name="slide7_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide7_prompt">Prompt Text</label></th>
+        <th><label for="slide7_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide7_prompt" name="slide7_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide7_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide7_prompt_link" name="slide7_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide7_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -593,8 +845,8 @@
       <th><label for="slide7_box_style">Text Box Style</label></th>
       <td>
        <select name="slide7_box_style" id="slide7_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    
@@ -626,16 +878,9 @@
         <td><input type="text" id="slide8_alt" name="slide8_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide8_link">Link to:</label></th>
+        <th><label for="slide8_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide8_link" name="slide8_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide8_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide8_showtextbox_full" name="slide8_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide8_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide8_showtextbox" name="slide8_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide8_headline">Headline Text</label></th>
@@ -646,8 +891,12 @@
         <td><input type="text" id="slide8_lead" name="slide8_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide8_prompt">Prompt Text</label></th>
+        <th><label for="slide8_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide8_prompt" name="slide8_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide8_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide8_prompt_link" name="slide8_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide8_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -669,8 +918,8 @@
       <th><label for="slide8_box_style">Text Box Style</label></th>
       <td>
        <select name="slide8_box_style" id="slide8_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    
@@ -702,16 +951,9 @@
         <td><input type="text" id="slide9_alt" name="slide9_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide9_link">Link to:</label></th>
+        <th><label for="slide9_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide9_link" name="slide9_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide9_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide9_showtextbox_full" name="slide9_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide9_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide9_showtextbox" name="slide9_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide9_headline">Headline Text</label></th>
@@ -722,8 +964,12 @@
         <td><input type="text" id="slide9_lead" name="slide9_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide9_prompt">Prompt Text</label></th>
+        <th><label for="slide9_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide9_prompt" name="slide9_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide9_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide9_prompt_link" name="slide9_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide9_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -745,8 +991,8 @@
       <th><label for="slide9_box_style">Text Box Style</label></th>
       <td>
        <select name="slide9_box_style" id="slide9_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    
@@ -778,16 +1024,9 @@
         <td><input type="text" id="slide10_alt" name="slide10_alt" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide10_link">Link to:</label></th>
+        <th><label for="slide10_link">Image Link :</label></th>
+        <p class="note">The Image Link will take effect ONLY if the CTA link is empty</p>
         <td><input type="text" id="slide10_link" name="slide10_link" class="text" value=""/></td>
-      </tr>
-      <tr>
-        <th><label for="slide10_showtextbox_full">Hide this Text Box</label></th>
-        <td><input type="checkbox" id="slide10_showtextbox_full" name="slide10_showtextbox_full" value="1" /></td>
-      </tr>
-      <tr>
-        <th><label for="slide10_showtextbox">Hide this Text Box [<b>just for the mobile View</b>]</label></th>
-        <td><input type="checkbox" id="slide10_showtextbox" name="slide10_showtextbox" value="1" /></td>
       </tr>
       <tr>
         <th><label for="slide10_headline">Headline Text</label></th>
@@ -798,8 +1037,12 @@
         <td><input type="text" id="slide10_lead" name="slide10_lead" class="text" value=""/></td>
       </tr>
       <tr>
-        <th><label for="slide10_prompt">Prompt Text</label></th>
+        <th><label for="slide10_prompt">Call to Action Text</label></th>
         <td><input type="text" id="slide10_prompt" name="slide10_prompt" class="text" value=""/></td>
+      </tr>
+      <tr>
+        <th><label for="slide10_prompt_link">Call to Action Link</label></th>
+        <td><input type="text" id="slide10_prompt_link" name="slide10_prompt_link" class="text" value=""/></td>
       </tr>
       <tr>
       <th><label for="slide10_box_alignment">Text Box Alignment<p class="note"> Vertical - Horizontal</p></label></th>
@@ -821,8 +1064,8 @@
       <th><label for="slide10_box_style">Text Box Style</label></th>
       <td>
        <select name="slide10_box_style" id="slide10_box_style">
-          <option value="greystyle" selected="selected">Default style</option>
-          <option value="orangestyle">orangestyle Camphor</option>
+          <option value="light_theme" selected="selected">Light Theme</option>
+          <option value="dark_theme">Dark Theme</option>
         </select>
       </td>
     </tr>    

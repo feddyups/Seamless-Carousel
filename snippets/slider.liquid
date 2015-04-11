@@ -5,7 +5,6 @@
   <div id="home">
     <div id="home_feature"
       style="background-color:{{ settings.viewport_bg }};" 
-      {% if settings.showtextbox %}class="hidetextboxformobile"{% endif %} 
       data-normalwidth="{{ settings.normalwidth }}" 
       data-normalheight="{{ settings.normalheight }}" 
       data-mobilewidth="{{ settings.mobilewidth }}" 
@@ -19,11 +18,10 @@
     >
     {% for i in (0..loop) %}
       {% capture alignment %}slide{{ slides[i] }}_box_alignment{% endcapture %}
-      {% capture showfordesktop %}slide{{ slides[i] }}_showtextbox_full{% endcapture %}
-      {% capture showformobile %}slide{{ slides[i] }}_showtextbox{% endcapture %}
       {% capture headline %}slide{{ slides[i] }}_headline{% endcapture %}
       {% capture lead %}slide{{ slides[i] }}_lead{% endcapture %}
       {% capture prompt %}slide{{ slides[i] }}_prompt{% endcapture %}
+      {% capture promptlink %}slide{{ slides[i] }}_prompt_link{% endcapture %}
       {% capture repetition %}slide{{ slides[i] }}_repeat{% endcapture %}
       {% capture bgcolor %}slide{{ slides[i] }}_bgcolor{% endcapture %}
       {% capture usesm %}slide{{ slides[i] }}_sm_use{% endcapture %}     
@@ -36,11 +34,10 @@
       <a 
         data-style="{{ settings[style] }}" 
         data-alignment="{{ settings[alignment] }}" 
-        data-showfordesktop="{{ settings[showfordesktop] }}" 
-        data-showformobile="{{ settings[showformobile] }}" 
         data-headline="{{ settings[headline] }}" 
         data-lead="{{ settings[lead] }}" 
         data-prompt="{{ settings[prompt] }}" 
+        data-promptlink="{{ settings[promptlink] }}" 
         data-repeat="{{ settings[repetition] }}" 
         data-bgcolor="{{ settings[bgcolor] }}" 
         data-smallscreen="{% if settings[usesm] %}{{ slidesmall | asset_url }}{% else %}false{% endif %}" 
