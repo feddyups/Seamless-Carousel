@@ -132,9 +132,9 @@ function debounce(func, wait, immediate) {
       
         for (var i = 0; i < slides.length; i++) {
           var image_src         = $(slides[i]).find('img').attr('srcset'),
-              repeating_value   = $(slides[i]).find('a').data('repeat'),
-              dataSmallScreen   = $(slides[i]).find('a').data('smallscreen'),
-              repeating_bgcolor = $(slides[i]).find('a').attr("data-bgcolor");
+              repeating_value   = $(slides[i]).find('#slide-data-container').data('repeat'),
+              dataSmallScreen   = $(slides[i]).find('#slide-data-container').data('smallscreen'),
+              repeating_bgcolor = $(slides[i]).find('#slide-data-container').attr("data-bgcolor");
 
           if (dataSmallScreen) {
             $(slides[i]).addClass("withMobileImg");
@@ -199,9 +199,9 @@ function debounce(func, wait, immediate) {
         if (image_src !== undefined && image_src !== false) {
           image_src = $(slides[$key]).find('img').attr('srcset');
         }
-        var repeating_value = $(slides[$key]).find('a').data('repeat');
-        var dataSmallScreen = $(slides[$key]).find('a').data('smallscreen');
-        var repeating_bgcolor = $(slides[$key]).find('a').attr("data-bgcolor");
+        var repeating_value = $(slides[$key]).find('#slide-data-container').data('repeat');
+        var dataSmallScreen = $(slides[$key]).find('#slide-data-container').data('smallscreen');
+        var repeating_bgcolor = $(slides[$key]).find('#slide-data-container').attr("data-bgcolor");
 
         if (dataSmallScreen) {
           $(slides[$key]).addClass("withMobileImg");
@@ -215,7 +215,6 @@ function debounce(func, wait, immediate) {
           image.onload = function () {
             $(slides[$key]).find('img').prop('src', image_src).data('src', false);
             if ((repeating_bgcolor !== undefined) && (!repeating_value)) {
-              //console.log('For further indexing');  
               $(slides[$key]).css({'background-color': repeating_bgcolor + ''});
               $('#mobile_content').find('.textoverlay:eq('+$key+')').css({'background-color': repeating_bgcolor + ''});
             }
@@ -350,7 +349,7 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'block';
           var desktopHide = 'none';
-          console.log('X2 for mobile: Img Width '+theMobileImgWidthX2+' Image Height: '+theMobileImgHeightX2);
+          //console.log('X2 for mobile: Img Width '+theMobileImgWidthX2+' Image Height: '+theMobileImgHeightX2);
           //Mobile View
         } else if ((win_width <= theMobileImgWidth) && (win_width > theMobileImgWidthX2)) {
           //img_width = theMobileImgWidth;
@@ -361,9 +360,9 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'block';
           var desktopHide = 'none';
-          console.log('mobile: Img Width '+img_width+' Image Height: '+img_height);
-          console.log('mobile: theMobileImgWidth '+theMobileImgWidth+' theMobileImgHeight: '+theMobileImgHeight);
-          console.log('mobile: inverseMobileAspect '+inverseMobileAspect);
+          //console.log('mobile: Img Width '+img_width+' Image Height: '+img_height);
+          //console.log('mobile: theMobileImgWidth '+theMobileImgWidth+' theMobileImgHeight: '+theMobileImgHeight);
+          //console.log('mobile: inverseMobileAspect '+inverseMobileAspect);
 
           //Between Mobile and Full Desktop View
         } else if ((win_width < theImgWidth) && (win_width > theMobileImgWidth)) {
@@ -373,7 +372,7 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'none';
           var desktopHide = 'block';
-          console.log('desktop small: Img Width '+img_width+' Image Height: '+img_height);
+          //console.log('desktop small: Img Width '+img_width+' Image Height: '+img_height);
           //Higher than the image view
         }else if (win_width >= theImgWidth) {
           img_width = theImgWidth;
@@ -382,7 +381,7 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'none';
           var desktopHide = 'block';
-          console.log('desktop : Img Width '+img_width+' Image Height: '+img_height);
+          //console.log('desktop : Img Width '+img_width+' Image Height: '+img_height);
         }
          
         $(self).find('div.loading-bar').css({
@@ -576,19 +575,19 @@ var Initiated = function(){
     }
 
     if (dataLink) {
-      console.log('dataLink is' +dataLink);
+      //console.log('dataLink is' +dataLink);
     }
     else{
-      console.log('no dataLink');
+      //console.log('no dataLink');
     }
                              
     home_slides += '<div class="slideheld">'
     home_slides += '<div>';
     if (dataLink && !dataPromptLink) {
-    home_slides += '<a class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition + '" href="' + dataLink + '" title="'+dataAlt+'">';
+    home_slides += '<a id="slide-data-container" class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition + '" href="' + dataLink + '" title="'+dataAlt+'">';
     }
     else{
-    home_slides += '<section class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition +'">';
+    home_slides += '<section id="slide-data-container" class="'+divsmallscreenclass+'" data-bgcolor="' + dataBgColor + '" data-smallscreen="'+ dataSmallScreen +'" data-repeat="' + dataRepetition +'">';
     }
     home_slides += '<div class="textoverlay '+dataAlignment+' '+mobileTextDisplay+' '+dataBoxStyle+'">';
     home_slides += '<div class="encircle">';
@@ -665,7 +664,7 @@ var Initiated = function(){
     
   });
 
-  $('#home_feature_images').remove();
+  //$('#home_feature_images').remove();
   $( "#home_feature" ).fadeTo( "fast" , 1, function() {});
 
   
