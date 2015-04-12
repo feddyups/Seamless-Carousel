@@ -8,6 +8,74 @@ EMAIL:      feddyups@gmail.com, rick@tricky3.co.uk
 WEBSITE:    http://www.freelancer.com/u/feddyups.html
 SUPPORT:    http://tricky3.co.uk/
 */
+{% if settings.slider_font_observer %}
+function cookie( name, value, days ){
+  if( value === undefined ){
+    var cookiestring = "; " + window.document.cookie;
+    var cookies = cookiestring.split( "; " + name + "=" );
+    if ( cookies.length === 2 ){
+      return cookies.pop().split( ";" ).shift();
+    }
+    return null;
+  }
+  else {
+    var expires;
+    if( value === false ){
+      days = -1;
+    }
+    if ( days ) {
+      var date = new Date();
+      date.setTime( date.getTime() + ( days * 24 * 60 * 60 * 1000 ) );
+      expires = "; expires="+date.toGMTString();
+    }
+    else {
+      expires = "";
+    }
+    window.document.cookie = name + "=" + value + expires + "; path=/";
+  }
+}
+
+function bodyScar (){
+  $('body').addClass('fonts-loaded');
+}
+
+if( !cookie( "fonts" ) ){cookie( "fonts", "{{shop.domain}}", 7 );}else{bodyScar ();}
+
+{% assign fontloads = settings.slider_web_fonts | split:',' %}
+{% assign loop = fontloads.size | minus: 1 %}
+{% unless loop == '0' %}
+var fontNames = [];
+var fontObserverName = [];
+{% for i in (0..loop) %}
+fontNames.push('{{fontloads[i]}}');
+fontObserverName.push('font_{{i}}');
+{% endfor %}
+var fontNum = fontNames.length;
+(function( w ){
+  if ($('body').hasClass('fonts-loaded')) {
+    return;
+  }
+  for (var i = 0; i < fontNum; i++) {
+    fontObserverName[i] = new w.FontFaceObserver( String(fontNames[i]), {});
+  }
+  if (fontNum == 1) {
+    w.Promise
+    .all([fontObserverName[0].check()])
+    .then(function(){bodyScar();});
+  }
+  else if (fontNum == 2){
+    w.Promise
+    .all([fontObserverName[0].check(),fontObserverName[1].check()])
+    .then(function(){bodyScar();});
+  }
+  else {
+    w.Promise
+    .all([fontObserverName[0].check(),fontObserverName[1].check(),fontObserverName[2].check()])
+    .then(function(){bodyScar();});
+  }
+}( this ));
+{% endunless %}
+{% endif %}
 
 function debounce(func, wait, immediate) {
   var timeout;

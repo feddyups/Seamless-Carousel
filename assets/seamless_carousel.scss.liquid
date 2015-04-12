@@ -1,4 +1,8 @@
 /* SEAMLESS CAROUSEL */
+
+ /*========================== fontload ==========================*/
+{% if settings.slider_checkout_custom_css %}{{ settings.slider_checkout_custom_css }}{% endif %}
+
 #home_feature_images {
   display: none;
 }
@@ -217,7 +221,11 @@
           border-style: solid;
           border-width: {{ settings.slider_headline_frame_width }};
           {% endif %}
+
+          {% unless settings.slider_font_observer %}
           font-family: {{ settings.slider_headline_font }};
+          {% endunless %}
+
           font-size: {{ settings.slider_headline_textsize }};
           line-height: {{ settings.slider_headline_line_height }};
           padding: {{ settings.slider_headline_padding }};
@@ -231,7 +239,10 @@
           {% endif %}
           font-size: {{ settings.slider_lead_textsize }};
           line-height: {{ settings.slider_lead_line_height }};
+          {% unless settings.slider_font_observer %}
           font-family: {{ settings.slider_lead_font }};
+          {% endunless %}
+
           letter-spacing: 0.2em;
         }
         .linkprompt{
@@ -242,6 +253,9 @@
           font-size: {{ settings.slider_cta_textsize }};
           line-height: {{ settings.slider_cta_line_height }};
           opacity:0.85;
+          {% unless settings.slider_font_observer %}
+          font-family: {{ settings.slider_cta_font }};
+          {% endunless %}
           letter-spacing: 0.15em;
           .no-touch &:hover{
             opacity:1;
@@ -250,6 +264,20 @@
       }
     }
   }
+
+{% if settings.slider_font_observer %}
+.fonts-loaded{ 
+  .headline{
+    font-family: {{ settings.slider_headline_font }};
+  }
+  .lead{
+    font-family: {{ settings.slider_lead_font }};
+  }
+  .linkprompt{
+    font-family: {{ settings.slider_cta_font }};
+  }
+}
+{% endif %}
 
   .dark_theme{
       .tightwidth{ 
@@ -349,6 +377,9 @@
 #mobile_content {
       display: none;
     }
+
+   
+
 
 @media all and (max-width: {{ settings.mobilewidth }}px) and (min-width: 0) {
 

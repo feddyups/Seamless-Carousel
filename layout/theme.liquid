@@ -15,5 +15,8 @@
 	document.createElement( "picture" );
 	</script>
 	<script src="{{ 'picturefill.min.js' | asset_url }}" async></script>
+	{% if settings.slider_font_observer %}
+	{{ 'fontfaceobserver.js' | asset_url | script_tag }}
+	{% endif %}
   	{% include 'jquery_seamless_carousel' %}
 {% endif %}

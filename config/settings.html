@@ -11,7 +11,7 @@
       <th><label for="slide_order">Slide Order</label></th>
       <td>
         <input type="text" id="slide_order" name="slide_order" class="text" value="3,1,2" />
-        <p class="note">e.g. 3,1,2 ; Slideshow can show up to ten images</p>
+        <p class="note">Slideshow can display up to 10 slides, split the order numbering with a comma, e.g. 3,1,2</p>
       </td>
     </tr>
     <tr>
@@ -62,6 +62,33 @@
   </table>
 
   <table>
+     <tr>
+      <td colspan="6"><h3 class="heading">Custom CSS / Web Font Service load</h3></td>
+    </tr>
+
+    <tr>
+      <th>
+        <label for="slider_checkout_custom_css">If you want to use a web service for loading your fonts, use the text area below. </label>
+        <small>You can also use the same text area for loading up any custom CSS you may need.</small>
+      </th>
+      <td colspan="6"><textarea name="slider_checkout_custom_css" cols="60" rows="5" id="slider_checkout_custom_css" value="" /></td>
+    </tr>
+
+    <tr>
+      <th><label for="slider_font_observer">Slider is using Web fonts</label></th>
+      <td><input type="checkbox" id="slider_font_observer" name="slider_font_observer" value="1" /></td>
+    </tr>
+    <tr>
+      <th><label for="slider_web_fonts">Web Fonts used</label></th>
+      <p class="note">Valid option only in the case 'Slider is using Web fonts' is selected above.Type all the web font names you want to use, separated by comma, e.g. </p>
+      <td>
+        <input type="text" id="slider_web_fonts" name="slider_web_fonts" class="text" value="fontNameA,fontnameB" />
+        
+      </td>
+    </tr>
+  </table>
+
+  <table>
     <h3 class="heading">Content Typography</h3>
     <p class="note">Choose up to three different font-families</p>
   <tr>
@@ -82,10 +109,9 @@
         <input type="text" id="slider_cta_font" name="slider_cta_font" class="text" value="Arial,sans-serif" />
       </td>
     </tr>
-    <tr>
-      <th><label for="slider_font_observer">Slider is using Web fonts</label></th>
-      <td><input type="checkbox" id="slider_font_observer" name="slider_font_observer" value="1" /></td>
-    </tr>
+   
+
+
     </table>
 
     <table>  
