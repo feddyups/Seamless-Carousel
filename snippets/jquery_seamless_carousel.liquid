@@ -8,6 +8,7 @@ EMAIL:      feddyups@gmail.com, rick@tricky3.co.uk
 WEBSITE:    http://www.freelancer.com/u/feddyups.html
 SUPPORT:    http://tricky3.co.uk/
 */
+
 {% if settings.slider_font_observer %}
 function cookie( name, value, days ){
   if( value === undefined ){
@@ -237,6 +238,17 @@ function debounce(func, wait, immediate) {
       }
     }
 
+    function textSizeRegulate(elw,el,const_minFont,const_maxFont) {
+      var $el = $(el);
+      $el.css('font-size', Math.max(Math.min(elw/10, const_maxFont), const_minFont)).css('line-height', 'normal');
+    }
+
+    function textSizeReset(el,fontSize,lineHeight) {
+      var $el = $(el);
+      $el.css('font-size', fontSize).css('line-height', lineHeight);
+    }
+
+
     function animateInSlide($key) {
       $(self).find('.thumb_pagination a.active').each(function () {
         $(this).removeClass('active');
@@ -250,6 +262,13 @@ function debounce(func, wait, immediate) {
       $(self).find('.mobile-pagination a:eq(' + $key + ')').each(function () {
         $(this).addClass('active');
       });
+
+
+      
+
+
+
+
       {% unless settings.slider_hidetextbox %}
         {% if settings.slider_showtextbelow %}
       $('#mobile_content').find('.textoverlay.active').each(function () {
@@ -313,9 +332,27 @@ function debounce(func, wait, immediate) {
       changeSlide(index);
       return false;
     }
+
+
+    
+    
     // Resize
     var resize = debounce(function() {
       var win_width             = $(window).width(),
+          
+          contentWidth          = Math.round(win_width/3),
+          minHeadlineSize       = parseFloat('{{ settings.slider_mobile_headline_textsize }}'),
+          maxHeadlineSize       = parseFloat('{{ settings.slider_headline_textsize }}'),
+          minLeadSize           = parseFloat('{{ settings.slider_mobile_lead_textsize }}'),
+          maxLeadSize           = parseFloat('{{ settings.slider_lead_textsize }}'),
+          minCTASize            = parseFloat('{{ settings.slider_mobile_cta_textsize }}'),
+          maxCTASize            = parseFloat('{{ settings.slider_cta_textsize }}'),
+          
+          headlineLineHeight    = '{{ settings.slider_headline_line_height }}',
+          leadLineHeight        = '{{ settings.slider_lead_line_height }}',
+          ctaLineHeight         = '{{ settings.slider_cta_line_height }}',
+          
+
           win_height            = $(window).height(),
           img_width, 
           img_height, 
@@ -329,15 +366,15 @@ function debounce(func, wait, immediate) {
 
           inverseAspect         = theImgHeight/theImgWidth,
           inverseMobileAspect   = theMobileImgHeight/theMobileImgWidth;
+
+        
       
-
-
-      //console.log('inverseAspect '+inverseAspect);
-      //console.log('theImgWidth '+theImgWidth);
-      //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
-      //console.log('theImgWidth '+theImgWidth);
-      //console.log('theMobileImgWidth '+theMobileImgWidth);
-      //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
+        //console.log('inverseAspect '+inverseAspect);
+        //console.log('theImgWidth '+theImgWidth);
+        //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
+        //console.log('theImgWidth '+theImgWidth);
+        //console.log('theMobileImgWidth '+theMobileImgWidth);
+        //console.log('theMobileImgWidthX2 '+theMobileImgWidthX2);
         //img_width = theImgWidth;
         //img_height = theImgHeight;
         
@@ -349,7 +386,8 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'block';
           var desktopHide = 'none';
-          //console.log('X2 for mobile: Img Width '+theMobileImgWidthX2+' Image Height: '+theMobileImgHeightX2);
+          console.log('X2 for mobile: Img Width '+theMobileImgWidthX2+' Image Height: '+theMobileImgHeightX2);
+          
           //Mobile View
         } else if ((win_width <= theMobileImgWidth) && (win_width > theMobileImgWidthX2)) {
           //img_width = theMobileImgWidth;
@@ -360,7 +398,7 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'block';
           var desktopHide = 'none';
-          //console.log('mobile: Img Width '+img_width+' Image Height: '+img_height);
+          console.log('mobile: Img Width '+img_width+' Image Height: '+img_height);
           //console.log('mobile: theMobileImgWidth '+theMobileImgWidth+' theMobileImgHeight: '+theMobileImgHeight);
           //console.log('mobile: inverseMobileAspect '+inverseMobileAspect);
 
@@ -373,6 +411,12 @@ function debounce(func, wait, immediate) {
           var mobileHide = 'none';
           var desktopHide = 'block';
           //console.log('desktop small: Img Width '+img_width+' Image Height: '+img_height);
+
+          textSizeRegulate(contentWidth,'.headline',minHeadlineSize,maxHeadlineSize);
+          textSizeRegulate(contentWidth,'.lead',minLeadSize,maxLeadSize);
+
+
+
           //Higher than the image view
         }else if (win_width >= theImgWidth) {
           img_width = theImgWidth;
@@ -381,7 +425,13 @@ function debounce(func, wait, immediate) {
           img_height *= 1;
           var mobileHide = 'none';
           var desktopHide = 'block';
-          //console.log('desktop : Img Width '+img_width+' Image Height: '+img_height);
+          console.log('desktop : Img Width '+img_width+' Image Height: '+img_height);
+
+          textSizeReset('.headline',maxHeadlineSize,headlineLineHeight);
+          textSizeReset('.lead',maxLeadSize,leadLineHeight);
+
+          
+
         }
          
         $(self).find('div.loading-bar').css({
@@ -406,10 +456,6 @@ function debounce(func, wait, immediate) {
         //if there is a mobile image set, then do your stuff
         $(self).find('.swapper.mobile-img-set').css("display", desktopHide);
     }, 250);
-
-
-    
-
     // Progress Bar
     function preloaderStart() {
       loading_bar_percent = 0;
@@ -440,14 +486,15 @@ function debounce(func, wait, immediate) {
       }).delay(500).fadeOut();
     }
 
-
-
-   
     // Init
     constructor();
   });
 };
 })(jQuery);
+
+
+
+
    
    
 // Get Set, let's go 
@@ -529,7 +576,7 @@ var Initiated = function(){
     }
 
     if (dataHeadline) {
-      headline_html = '<div class="headline">'+dataHeadline+'</div>';
+      headline_html = '<div class="textfits headline">'+dataHeadline+'</div>';
     }
     
     //Make sure the User has not accidentally chosen "Use this for Mobile" through the settings, but still hasn't loaded any mobile image
@@ -574,13 +621,6 @@ var Initiated = function(){
       additionalimageSet += ' srcset="'+newdataSmallSrc_1024+' 1024w,   '+newdataSmallSrc_600+' 600w,   '+newdataSmallSrc_480+' 480w,    '+newdataSmallSrc_240+' 240w" />';
     }
 
-    if (dataLink) {
-      //console.log('dataLink is' +dataLink);
-    }
-    else{
-      //console.log('no dataLink');
-    }
-                             
     home_slides += '<div class="slideheld">'
     home_slides += '<div>';
     if (dataLink && !dataPromptLink) {
@@ -591,7 +631,9 @@ var Initiated = function(){
     }
     home_slides += '<div class="textoverlay '+dataAlignment+' '+mobileTextDisplay+' '+dataBoxStyle+'">';
     home_slides += '<div class="encircle">';
-    home_slides += '<div class="tightwidth">' + headline_html ;
+    home_slides += '<div class="tightwidth">';
+    home_slides += '<section class="offsetabs">';
+    home_slides += headline_html ;
     home_slides += '<div class="lead">'+dataLead+'</div>';
     if (dataPrompt) {
       if (dataPromptLink) {
@@ -601,7 +643,7 @@ var Initiated = function(){
         home_slides += '<div class="linkprompt">'+dataPrompt+'</div>';
       }
     }
-    home_slides += '</div></div></div>';
+    home_slides += '</section></div></div></div>';
     //only load the desktop img when the viewport is wider than theMobileImgWidth. On smaller viewports, always load the mobile equivalents, if they exist.
     home_slides += '<picture>';
     home_slides += '<source';
@@ -649,13 +691,13 @@ var Initiated = function(){
         mobile_content_for_each_slide += '<div class="textoverlay '+dataAlignment+' '+dataBoxStyle+'">';
         mobile_content_for_each_slide += '<div class="encircle">';
         mobile_content_for_each_slide += '<div class="tightwidth">' + headline_html ;
-        mobile_content_for_each_slide += '<div class="lead">'+dataLead+'</div>';
+        mobile_content_for_each_slide += '<div class="lead textfits">'+dataLead+'</div>';
         if (dataPrompt) {
           if (dataPromptLink) {
-            mobile_content_for_each_slide += '<a class="linkprompt" href="'+dataPromptLink+'">'+dataPrompt+'</a>';
+            mobile_content_for_each_slide += '<a class="linkprompt textfits" href="'+dataPromptLink+'">'+dataPrompt+'</a>';
           }
           else{
-            mobile_content_for_each_slide += '<div class="linkprompt">'+dataPrompt+'</div>';
+            mobile_content_for_each_slide += '<div class="linkprompt textfits">'+dataPrompt+'</div>';
           }
         }
         mobile_content_for_each_slide += '</div></div></div>';
@@ -713,6 +755,5 @@ var Initiated = function(){
         useTimer: {{ settings.slider_autoPlay }}
   });
 };
-
 if ($('#home_feature_images a').length > 0) {$(document).ready(function () {Initiated();});}
 </script>
