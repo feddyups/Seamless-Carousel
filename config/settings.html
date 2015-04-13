@@ -226,30 +226,51 @@
     <h3 class="heading">Content Offset for Desktop View</h3>
     <p class="note">Define the Content's offset for the Desktop View. Values can be expressed in px, em, rem, or percentive.</p>
      <tr>
-        <th><label for="slider_left_txt_offset">Distance from the Left</label>
+        <th>
+          <label for="slider_left_txt_offset">Distance from the Left</label>
         </th>
-        <td><input type="number" id="slider_left_txt_offset" name="slider_left_txt_offset" class="number" value="20%"/></td>
+        <td>
+          <input type="number" id="slider_left_txt_offset" name="slider_left_txt_offset" class="number" value="20%"/>
+          <p class="note">Only affects content aligned to the Left (either Top-Left, Center-Left, or Bottom-Left alignments) </p>
+    </td>
     </tr>
-        <tr>
-        <th><label for="slider_right_txt_offset">Distance from the Right</label>
-        </th>
-        <td><input type="number" id="slider_right_txt_offset" name="slider_right_txt_offset" class="number" value="20%"/></td>
+    <tr>
+      <th><label for="slider_right_txt_offset">Distance from the Right</label>
+    </th>
+    <td>
+        <input type="number" id="slider_right_txt_offset" name="slider_right_txt_offset" class="number" value="20%"/>
+        <p class="note">Only affects content aligned to the Right (either Top-Right, Center-Right, or Bottom-Right alignments) </p>
+    </td>
     </tr>
-        <tr>
-        <th><label for="slider_top_txt_offset">Distance from the Top</label>
-        </th>
-        <td><input type="number" id="slider_top_txt_offset" name="slider_top_txt_offset" class="number" value="20%"/></td>
+    <tr>
+      <th>
+        <label for="slider_top_txt_offset">Distance from the Top</label>
+      </th>
+      <td>
+        <input type="number" id="slider_top_txt_offset" name="slider_top_txt_offset" class="number" value="20%"/>
+      </td>
+        <p class="note">Affects ALL content alignments </p>
     </tr>
-        <tr>
-        <th><label for="slider_bottom_txt_offset">Distance from the Bottom</label>
+    <tr>
+      <th><label for="slider_bottom_txt_offset">Distance from the Bottom</label>
         </th>
-        <td><input type="number" id="slider_bottom_txt_offset" name="slider_bottom_txt_offset" class="number" value="20%"/></td>
+      <td>
+        <input type="number" id="slider_bottom_txt_offset" name="slider_bottom_txt_offset" class="number" value="20%"/>
+      </td>
     </tr>
   </table>
 
   <table>
     <h3 class="heading">Content Styling for Desktop View</h3>
     <p class="note">Configure how the Headline, the Lead and the CTA content should look like on the Desktop View.</p>
+
+    <tr>
+      <th><label for="slider_desktop_content_fitsize">Smart-adjust the Desktop Content sizes</label></th>
+      <td><input type="checkbox" id="slider_desktop_content_fitsize" name="slider_desktop_content_fitsize" value="1" />
+        <p class="note">Depending on the available width, the Slider will auto-adjust the Content Font Size and Line Height, so as to ensure visibility for all ViewPorts. None the less, auto-adjustment will always consider the Font Sizes and Line Heights you are setting.</p>
+      </td>
+    </tr>
+
     <tr>
       <th><label for="slider_headline_frame">Show Headline within Frame</label></th>
       <td><input type="checkbox" id="slider_headline_frame" name="slider_headline_frame" value="1" />
@@ -267,7 +288,7 @@
       <th><label for="slider_headline_textsize">Headline Text Size</label></th>
       <td>
         <input type="text" id="slider_headline_textsize" name="slider_headline_textsize" class="text" value="33px" />
-        <p class="note">Desktop View : Define the size of the Headline Text</p>
+        <p class="note">Desktop View : Define the size of the Headline Text, using Pixels, e.g. "33px". If the "Smart-adjust" option is active, the Slider will calculate the best possible fit for your content on every screen width, auto-magically.</p>
       </td>
     </tr>
     <tr>
