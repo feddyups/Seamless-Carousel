@@ -68,7 +68,7 @@
           -moz-transition: opacity 0.3s ease;
           -o-transition: opacity 0.3s ease;
           transition: opacity 0.3s ease;
-          &:hover {
+          &:hover, &:active {
             opacity: 1;
           }
         }
@@ -91,16 +91,19 @@
     {% endif %}
 
     {% if settings.slider_showthumbnails %}
+    
     .thumb_pagination{
       background-color: rgba(255, 255, 255, 0.6);
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       border-top: 1px solid rgba(0, 0, 0, 0.2);
-      bottom: 0;
+      bottom: -120px;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
       position: absolute;
       text-align: center;
       width: 100%;
       z-index: 4;
+      transition: all 0.2s ease-in-out 0.2s;
+
       li{
         background-color: rgba(0, 0, 0, 0.1);
         border-right: 1px solid rgba(0, 0, 0, 0.2);
@@ -191,6 +194,11 @@
   }
 }
 
+#home_feature:hover .thumb_pagination, #home_feature:active .thumb_pagination {
+      bottom: 0;
+      transition: all 0.2s ease-in-out 0s;
+    }
+
 /* Text Options */
 
 .textoverlay{
@@ -248,6 +256,7 @@
 
         }
         .linkprompt{
+          display: inline-block;
           {% if settings.slider_cta_frame %}
           border-style: solid;
           border-width: {{ settings.slider_cta_frame_width }};
@@ -295,7 +304,7 @@
           background-color: {{ settings.slider_cta_link_bg_style2_color }};
           color: {{ settings.slider_cta_style2_color }};
           border-color: {{ settings.slider_cta_style2_color }};
-          &:hover{
+          &:hover, &:active {
             background-color: {{ settings.slider_cta_link_bg_hover_style2_color }};
             color: {{ settings.slider_cta_link_hover_style2_color }};
           }
@@ -319,7 +328,7 @@
           color: {{ settings.slider_cta_style1_color }};
           border-color: {{ settings.slider_cta_style1_color }};
           background-color: {{ settings.slider_cta_link_bg_style1_color }};
-          &:hover{
+          &:hover, &:active{
             background-color: {{ settings.slider_cta_link_bg_hover_style1_color }};
             color: {{ settings.slider_cta_link_hover_style1_color }};
           }
@@ -465,8 +474,20 @@
   #mobile_content .textoverlay{
     text-align: center;
     display: none;
+    .textfits{
+      display: inline-block;
+    }
+    .lead {
+      width: 100%;
+    }
+    .linkprompt {
+    box-sizing: padding-box;
+    }
     .encircle{
       display: block;
+      .tightwidth{
+        max-width: 100%;
+      }
     }
   }
 

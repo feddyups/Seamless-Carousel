@@ -223,39 +223,40 @@
   </table>
 
   <table>
-    <h3 class="heading">Content Offset for Desktop View</h3>
-    <p class="note">Define the Content's offset for the Desktop View. Values can be expressed in px, em, rem, or percentive.</p>
+    <h3 class="heading">Content Grid Offset for Desktop View</h3>
+    <p class="note">The Slider superimposes a 3x3 regular grid over the available space, so you can choose from 9 different positions for each of your Slide Content. This section gives you the possibility to offset the grid selectively. Values can be expressed in px, em, rem, percentive, or even vw/vh units. "rem" or "em" is probably the best way to go about it for the top and bottom offsets, while we suggest "vw" for the left and right offsets.</p>
      <tr>
         <th>
-          <label for="slider_left_txt_offset">Distance from the Left</label>
+          <label for="slider_left_txt_offset">Distance from the Left Edge</label>
         </th>
         <td>
-          <input type="number" id="slider_left_txt_offset" name="slider_left_txt_offset" class="number" value="20%"/>
+          <input type="number" id="slider_left_txt_offset" name="slider_left_txt_offset" class="number" value="1vw"/>
           <p class="note">Only affects content aligned to the Left (either Top-Left, Center-Left, or Bottom-Left alignments) </p>
     </td>
     </tr>
     <tr>
-      <th><label for="slider_right_txt_offset">Distance from the Right</label>
+      <th><label for="slider_right_txt_offset">Distance from the Right Edge</label>
     </th>
     <td>
-        <input type="number" id="slider_right_txt_offset" name="slider_right_txt_offset" class="number" value="20%"/>
+        <input type="number" id="slider_right_txt_offset" name="slider_right_txt_offset" class="number" value="1vw%"/>
         <p class="note">Only affects content aligned to the Right (either Top-Right, Center-Right, or Bottom-Right alignments) </p>
     </td>
     </tr>
     <tr>
       <th>
-        <label for="slider_top_txt_offset">Distance from the Top</label>
+        <label for="slider_top_txt_offset">Distance from the Top Edge</label>
       </th>
       <td>
-        <input type="number" id="slider_top_txt_offset" name="slider_top_txt_offset" class="number" value="20%"/>
+        <input type="number" id="slider_top_txt_offset" name="slider_top_txt_offset" class="number" value="5rem"/>
       </td>
-        <p class="note">Affects ALL content alignments </p>
+        <p class="note">Only affects content aligned to the Top (either Top-Right, Top-Center, or Top-Left alignments) </p>
     </tr>
     <tr>
-      <th><label for="slider_bottom_txt_offset">Distance from the Bottom</label>
+      <th><label for="slider_bottom_txt_offset">Distance from the Bottom Edge</label>
         </th>
       <td>
-        <input type="number" id="slider_bottom_txt_offset" name="slider_bottom_txt_offset" class="number" value="20%"/>
+        <input type="number" id="slider_bottom_txt_offset" name="slider_bottom_txt_offset" class="number" value="5rem"/>
+        <p class="note">Only affects content aligned to the Bottom (either Bottom-Right, Bottom-Center, or Bottom-Left alignments) </p>
       </td>
     </tr>
   </table>
